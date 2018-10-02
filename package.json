@@ -20,5 +20,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "main": "server/server.js",
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3535"
+    },
+    "/auth": {
+      "target": "http://localhost:3535"
+    },
+    "/": {
+      "target": "http://localhost:3535"
+    }
   }
 }
