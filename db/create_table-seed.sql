@@ -23,3 +23,9 @@ CREATE TABLE "assets" (
   "asset_name" text,
   "asset_url" text
 );
+
+CREATE TABLE "user_parts" (
+  "user_part" serial primary key,
+  "user_id" integer references users(user_id),
+  "asset_id" integer references assets(asset_id)
+);
