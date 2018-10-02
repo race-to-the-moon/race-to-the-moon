@@ -48,11 +48,8 @@ app.use(session({
     // * get
 app.get(`/api/user`,con.getUser);
 
-    // * post
-app.post(`/api/user`, con.makeUser);
-
-    // * put
-app.put(`/api/user`, con.updateUser);
+    // * put (updates username and icon)
+app.put(`/api/user`, con.updateUsername);
 
     // * delete
 app.delete(`/api/user`, con.deleteUser);

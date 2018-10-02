@@ -1,11 +1,48 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-export default function UserCreation(){
-    return (
-        <div>
-            <h1>User Creation</h1>
-            <Link to='/mainmenu'><button>Create User</button></Link>
-        </div>
-    )
+export default class UserCreation extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            usernameInput = ''
+        }
+    }
+
+    updateUsername(val) {
+        this.setState((prevState) => {
+            return { usernameInput: val }
+        })
+    }
+
+    submitUsername() {
+        let userUpdate = {
+            username: this.state.usernameInput
+        }
+        axios.put('/api/user', userUpdate)
+            .then(resp => {
+                console.log(resp.data);
+
+            })
+    }
+
+    render() {
+
+        return (
+            <div>
+                <h1>User Creation</h1>
+                <h3>Please add a Username</h3>
+                <input type="text"
+                    placeholder='Username'
+                    onClick={(e) => this.usernameInput(e.target.value)}
+                />
+                <Link to='/mainmenu'>
+                    <button
+                        onClick={this.submitUsername}
+                    >Create User</button></Link>
+            </div>
+        )
+    }
 }
