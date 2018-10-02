@@ -1,6 +1,7 @@
 DROP TABLE if EXISTS "users";
 DROP TABLE if EXISTS "scores";
 DROP TABLE if EXISTS "assets";
+DROP TABLE if EXISTS "user_parts";
 
 
 CREATE TABLE "users" (
