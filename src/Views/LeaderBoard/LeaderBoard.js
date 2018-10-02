@@ -1,11 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 
-export default function Login(){
-    return (
-        <div>
-            <h1>Leader Board</h1>
-            <Link to='/mainmenu'><button>Go To Main Menu</button></Link>
-        </div>
-    )
+class LeaderBoard extends Component {
+    constructor() {
+        super();
+    }
+    
+    render() {
+        return (
+            <div>
+                <div>
+                    <h1>LeaderBoards</h1>
+                    <Link to='/mainmenu'><button>Go To Main Menu</button></Link>
+                </div>
+                {}
+            </div>
+        )
+    }
 }
+
+export default LeaderBoard;
