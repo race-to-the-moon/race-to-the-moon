@@ -1,11 +1,20 @@
 // // // ** IMPORTS ** // // //
+    
+    // Dependencies //
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 
+    // Controllers //
+const con = require('./controller');
+const ac = require('./authController');
+
+
 
 // // // ** DECLARATIONS ** // // //
+
+    // General //
 const app = express();
 const {
     SERVER_PORT,
@@ -20,6 +29,7 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 
+
 // // // ** Middleware ** // // //
 app.use(express.static(`${__dirname}/../build`));
 app.use(express.json())
@@ -30,17 +40,43 @@ app.use(session({
 }))
 
 
+
 // // // ** ENDPOINTS ** // // //
 
 //  // User Data //
-
-      // * get
     
-      // * post
+    // * get
+app.get(`/api/user`,con.getUser);
 
-      // * put
+    // * post
+app.post(`/api/user`, con.makeUser);
 
-      // * delete
+    // * put
+app.put(`/api/user`, con.updateUser);
+
+    // * delete
+app.delete(`/api/user`, con.deleteUser);
+
+
+//  // Scores //
+
+    // * get
+app.get(`/api/scores`, con.getScores);
+
+    // * post
+app.post(`/api/scores`, con.addScore);
+
+    // * put?
+app.put(`/api/scores`, con.updateScore);
+
+    // * delete?
+app.delete(`/api/scores`, con.deleteScore);
+
+
+//  // Assets //
+
+    // * get
+app.get(`/api/assets`, con.getAssets);
 
 
 
