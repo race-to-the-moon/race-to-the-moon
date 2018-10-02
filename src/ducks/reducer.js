@@ -3,11 +3,14 @@ import initialState from './initialState';
 // REDUCER
 export default (state = initialState, action) => {
     const { type, payload } = action
-    const { topLvl = '',
+    
+    if(payload){
+        var { topLvl = '',
             nestedObj = '',
             i = '',
             what = '',
             val = '' } = payload
+    }
 
 
     let newState = JSON.parse(JSON.stringify(state))

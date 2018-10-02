@@ -83,7 +83,7 @@ app.get(`/api/assets`, con.getAssets);
 
 //  // Authentication //
 
-
+app.get('/auth/callback', ac.login);
 
 
 
