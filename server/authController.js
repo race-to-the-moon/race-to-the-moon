@@ -6,8 +6,8 @@ const {
     REACT_APP_DOMAIN,
     REACT_APP_CLIENT_ID,
     CLIENT_SECRET,
-    // REACT_APP_LOGOUT_REDIRECT,
-    // AUTH_REDIRECT,
+    REACT_APP_LOGOUT_REDIRECT,
+    AUTH_REDIRECT,
 } = process.env;
 
 
@@ -44,12 +44,12 @@ module.exports = {
         if (foundUser[0]) {
             // if user exists set user to sessions
             req.session.user = foundUser[0];
-            res.redirect('/#/user/dashboard')
+            res.redirect('/#/mainmenu')
         } else {
             // create new user with info from 
-            let createdUser = await db.create_user(name, email, picture, sub, admin)
+            let createdUser = await db.create_user([sub, picture])
             req.session.user = createdUser[0];
-            res.redirect('/#/user/dashboard')
+            res.redirect('/#/usercreation')
         }
         console.log(req.session)
     },

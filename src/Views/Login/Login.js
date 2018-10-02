@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Login(){
 
-    login=() => {
+    let login=() => {
         let { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env
         let url = `${encodeURIComponent(window.location.origin)}/auth/callback`
 
@@ -14,7 +14,7 @@ export default function Login(){
     return (
         <div>
             <h1>Login</h1>
-            <button onClick={login()}>Login</button>
+            <button onClick={login}>Login</button>
         </div>
     )
 }
