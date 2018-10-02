@@ -1,28 +1,51 @@
+// // // ** IMPORTS ** // // //
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 
 
-// // // Declarations // // //
+// // // ** DECLARATIONS ** // // //
 const app = express();
 const {
     SERVER_PORT,
-    // SECRET,
+    SECRET,
     CONNECTION_STRING,
 } = process.env;
 
-// Database Connection
+    // Database Connection //
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     console.log('Connected to Database');
-
 })
 
 
-// // // Middleware // // //
+// // // ** Middleware ** // // //
 app.use(express.static(`${__dirname}/../build`));
 app.use(express.json())
+app.use(session({
+    secret: SECRET,
+    resave: false,
+    saveUninitialized: true,
+}))
+
+
+// // // ** ENDPOINTS ** // // //
+
+//  // User Data //
+
+      // * get
+    
+      // * post
+
+      // * put
+
+      // * delete
+
+
+
+
+//  // Authentication //
 
 
 
@@ -37,9 +60,7 @@ app.use(express.json())
 
 
 
-
-
-// // // Please Leave Me Alone!!! // // //
+// // // ** Please Leave Me Alone!!! ** // // //
 
 app.listen(SERVER_PORT, ()=>{
     console.log(`I can hear if you speaking softly through port ${SERVER_PORT}`);
