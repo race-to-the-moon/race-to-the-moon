@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom'
 
 class MainMenu extends Component {
     constructor() {
@@ -15,8 +15,8 @@ class MainMenu extends Component {
             <div>
                 <h1>Main Menu</h1>
                 <div>
-                    <button>Single Player</button>
-                    <button>Score board</button>
+                    <Link to='/leaderboard'><button>Leader Board</button></Link>
+                    <Link to='/single'><button>Sinlge Player</button></Link>
                     <button>Logout</button>
                 </div>
                 <div>
