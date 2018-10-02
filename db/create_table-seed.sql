@@ -14,7 +14,7 @@ CREATE TABLE "scores" (
   "score_id" serial primary key,
   "time" integer,
   "points" integer,
-  "user_id" interger references users(user_id)
+  "user_id" integer references users(user_id)
 );
 
 CREATE TABLE "assets" (
