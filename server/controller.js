@@ -15,7 +15,15 @@ module.exports = {
         res.status(200).send('what the f*** why are you deleting?')
     },
     getScores: (req, res) => {
-        res.status(200).send('here, have a score')
+        const db = req.app.get('db')
+
+        db.get_scores()
+        .then(scores => {
+            res.status(200).send(scores)
+        }).catch(err => {
+            res.status(500).send({errorMessage: "Oops! Slomething went wrong, could not get scores. Better luck next time!"})
+            console.log(err)
+        })
     },
     addScore: (req, res) => {
         res.status(200).send(`so, you didn't lose...`)
