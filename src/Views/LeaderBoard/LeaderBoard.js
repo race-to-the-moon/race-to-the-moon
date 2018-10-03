@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import './LeaderBoard.css'
+
+import LeaderList from './../../Component/LeaderList/LeaderList'
 
 class LeaderBoard extends Component {
     
     render() {
         return (
             <div>
-                <div>
-                    <h1>LeaderBoards</h1>
+                <div className='leaderBoard-body'>
+                    <h1>LeaderBoard</h1>
+                    <div className='leaderList-body'>
+                        <LeaderList/>
+                    </div>
                     <Link to='/mainmenu'><button>Go To Main Menu</button></Link>
                 </div>
                 {}
