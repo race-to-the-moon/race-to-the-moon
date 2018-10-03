@@ -32,11 +32,11 @@ export default class UserCreation extends Component {
             }
             console.log(userUpdate.username);
             
-            // axios.put('/api/user', userUpdate)
-            //     .then(resp => {
-            //         console.log(resp.data);
+            axios.put('/api/user', userUpdate)
+                .then(resp => {
+                    console.log(resp.data);
 
-            //     })
+                })
         } else {
             console.log('nope, please fill out things');
             
