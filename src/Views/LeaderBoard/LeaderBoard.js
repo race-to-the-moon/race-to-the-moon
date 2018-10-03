@@ -5,9 +5,6 @@ import './LeaderBoard.css'
 import LeaderList from './../../Component/LeaderList/LeaderList'
 
 class LeaderBoard extends Component {
-    constructor() {
-        super();
-    }
     
     render() {
         return (
