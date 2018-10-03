@@ -2,11 +2,14 @@ module.exports = {
     getUser: (req, res) => {
         res.status(200).send('this is user data')
     },
-    makeUser: (req, res) => {
-        res.status(200).send('this is making user data. Leaving soon')
-    },
-    updateUser: (req, res) => {
-        res.status(200).send('this is updating user data')
+    updateUsername: async (req, res) => {
+        const {username} = req.body
+        const {user_id, icon} = req.session.user
+
+        let updatedUser = res.get('db').update_username([username, icon, user_id])
+
+        req.session.user = updatedUser
+        res.status(200).send(req.session.user)
     },
     deleteUser: (req, res) => {
         res.status(200).send('what the f*** why are you deleting?')
