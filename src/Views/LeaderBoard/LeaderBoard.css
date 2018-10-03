@@ -1,0 +1,16 @@
+.leaderBoard-body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leaderList-body{
+    width: 100%;
+    height: 80vh;
+    background: black;
+    margin: 0 auto;
+    overflow-y: scroll;
+}

@@ -1,0 +1,13 @@
+.leaderItem-body{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(26, 26, 26);
+    border-bottom: 2px solid black;
+    font-size: 25px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    color: white;
+    padding: 0 25px;
+}
