@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 
 class LeaderBoard extends Component {
-    constructor() {
-        super();
-    }
     
     render() {
         return (
