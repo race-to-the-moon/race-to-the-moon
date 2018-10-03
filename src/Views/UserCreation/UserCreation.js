@@ -7,28 +7,47 @@ export default class UserCreation extends Component {
         super();
 
         this.state = {
-            usernameInput = ''
+            userInput: '',
+            filledOut: false,
+            started: false,
         }
     }
 
     updateUsername(val) {
+        let filled = val ? true : false;
+
         this.setState((prevState) => {
-            return { usernameInput: val }
+            return {
+                userInput: val,
+                filledOut: filled,
+            }
         })
     }
 
-    submitUsername() {
-        let userUpdate = {
-            username: this.state.usernameInput
-        }
-        axios.put('/api/user', userUpdate)
-            .then(resp => {
-                console.log(resp.data);
+    submitUsername = () => {
+        if (this.state.userInput) {
 
-            })
+            let userUpdate = {
+                username: this.state.userInput
+            }
+            console.log(userUpdate.username);
+            
+            // axios.put('/api/user', userUpdate)
+            //     .then(resp => {
+            //         console.log(resp.data);
+
+            //     })
+        } else {
+            console.log('nope, please fill out things');
+            
+        }
     }
 
     render() {
+
+        const { filledOut } = this.state
+
+        let redirect = filledOut ? '/mainmenu' : '/usercreation';
 
         return (
             <div>
@@ -36,9 +55,9 @@ export default class UserCreation extends Component {
                 <h3>Please add a Username</h3>
                 <input type="text"
                     placeholder='Username'
-                    onClick={(e) => this.usernameInput(e.target.value)}
+                    onChange={(e) => this.updateUsername(e.target.value)}
                 />
-                <Link to='/mainmenu'>
+                <Link to={redirect}>
                     <button
                         onClick={this.submitUsername}
                     >Create User</button></Link>
