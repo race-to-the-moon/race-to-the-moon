@@ -1,6 +1,6 @@
 import initialState from './initialState';
 
-// REDUCER
+// // REDUCER // //
 export default (state = initialState, action) => {
     const { type, payload } = action
     
@@ -16,6 +16,11 @@ export default (state = initialState, action) => {
     let newState = JSON.parse(JSON.stringify(state))
 
     switch (type) {
+        case UPDATE_TOP_LEVEL_OBJ:
+
+            newState[what] = val
+            return newState
+
         case UPDATE_VAL_IN_OBJ:
 
             newState[topLvl][what] = val
@@ -41,13 +46,22 @@ export default (state = initialState, action) => {
     }
 }
 
-// TYPES
+// // TYPES // //
+const UPDATE_TOP_LEVEL_OBJ = 'UPDATE_TOP_LEVEL_OBJ'
 const UPDATE_VAL_IN_OBJ = 'UPDATE_VAL_IN_OBJ';
 const UPDATE_NESTED_OBJ = 'UPDATE_NESTED_OBJ';
 const UPDATE_OBJ_IN_ARR = 'UPDATE_OBJ_IN_ARR';
 const UPDATE_NESTED_OBJ_IN_ARR = 'UPDATE_NESTED_OBJ_IN_ARR';
 
-// ACTION CREATORS
+
+// // ACTION CREATORS // //
+export const updateTopLvlObj = (instructions) => {
+    return {
+        type: UPDATE_TOP_LEVEL_OBJ,
+        payload: instructions
+    }
+}
+
 export const updateValInObj = (instructions) => {
     return {
         type: UPDATE_VAL_IN_OBJ,

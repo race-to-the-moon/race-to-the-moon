@@ -27,5 +27,11 @@ module.exports = {
     score: {
         astScore: 0,
         timeScore: 0
+    },
+    user: {
+        user_id: 0,
+        icon: '',
+        username: '',
+        auth_id: ''
     }
 }
