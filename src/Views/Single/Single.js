@@ -12,6 +12,9 @@ class Single extends Component {
     //varriables
     game = {};
     bg = '';
+    rocket = '';
+    asteroid = '';
+    meteorite = '';
 
     componentDidMount() {
         if (!this.props.user.user_id) {
@@ -34,6 +37,12 @@ class Single extends Component {
             height: 667,
             renderer: Phaser.AUTO,
             parent: 'render-game',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 200 }
+                }
+            },
             scene: {
                 preload: this.preload,
                 create: this.create,
@@ -45,16 +54,37 @@ class Single extends Component {
 
     preload() {
         this.load.image('background', 'https://examples.phaser.io/assets/games/invaders/starfield.png')
+        this.load.image('rocket', 'assets/rocket.png')
+        this.load.image('asteroid', 'assets/asteroid.png')
+        this.load.image('meteorite', 'assets/meteorite.png')
     }
-
+    
     create() {
         this.bg = this.add.tileSprite(0, 0, this.game.config.width * 2, this.game.config.height * 2, 'background');
-        console.log(this.game)
+        
+        this.rocket = this.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 170, 'rocket');
+        this.rocket.setDisplaySize( 150, 150 );
+        
+        this.asteroid = this.physics.add.image(0, -25, 'asteroid');
+        this.asteroid.setDisplaySize( 50, 50 );
+        this.asteroid.setVelocity(100, 200)
+        
+        this.meteorite = this.physics.add.image(this.game.config.width / 2, -25, 'meteorite');
+        this.meteorite.setDisplaySize( 50, 50 );
+        // this.meteorite.setVelocity(100, 200);
+        // this.game.physics.arcade.moveToObject(this.meteorite, this.rocket, 120)
+    }
+    
+    // asteroidFalling() {
+
+    // }
+    
+    update() {
+        this.bg.tilePositionY -= 3;
+        // this.game.Physics.Arcade.moveToObject(this.asteroid, this.rocket, 120)
+        // this.asteroidFalling()
     }
 
-    update() {
-        this.bg.tilePositionY -= 5;
-    }
 
     render() {
         const { user_id } = this.props.user
