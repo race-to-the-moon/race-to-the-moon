@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Background from './../../Component/Background/Background'
 
 // Action Creators //
 import { updateTopLvlObj } from '../../ducks/reducer';
@@ -32,6 +33,7 @@ class Single extends Component {
 
             <div>
                 <h1>Single Player</h1>
+                <Background/>
                 <Link to='/mainmenu'><button>Go To Main Menu</button></Link>
             </div>
                 ):(
