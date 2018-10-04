@@ -7,9 +7,11 @@ const massive = require('massive');
 const session = require('express-session');
 
     // Controllers //
-const con = require('./controller');
-const ac = require('./authController');
+const con = require('./Controllers/controller');
+const ac = require('./Controllers/authController');
 
+    // Middleware //
+const aM = require('./Middleware/authMiddleware');
 
 
 // // // ** DECLARATIONS ** // // //
@@ -81,6 +83,10 @@ app.get(`/api/assets`, con.getAssets);
 //  // Authentication //
 
 app.get('/auth/callback', ac.login);
+
+app.get('/auth/user', aM.envCheck, ac.userData);
+
+app.delete('/auth/user', ac.logout)
 
 
 
