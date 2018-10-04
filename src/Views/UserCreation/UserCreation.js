@@ -52,7 +52,7 @@ class UserCreation extends Component {
                 username: this.state.userInput
             }
             console.log(userUpdate.username);
-            
+
             axios.put('/api/user', userUpdate)
                 .then(resp => {
                     console.log(resp.data);
@@ -60,7 +60,7 @@ class UserCreation extends Component {
                 })
         } else {
             console.log('nope, please fill out things');
-            
+
         }
     }
 
@@ -72,21 +72,21 @@ class UserCreation extends Component {
 
         return (
             <div>
-                {user_id?(
+                {user_id ? (
                     <div>
 
-                <h1>User Creation</h1>
-                <h3>Please add a Username</h3>
-                <input type="text"
-                    placeholder='Username'
-                    onChange={(e) => this.updateUsername(e.target.value)}
-                    />
-                <Link to={redirect}>
-                    <button
-                        onClick={this.submitUsername}
-                        >Create User</button></Link>
-                        </div>
-                    ):(
+                        <h1>User Creation</h1>
+                        <h3>Please add a Username</h3>
+                        <input type="text"
+                            placeholder='Username'
+                            onChange={(e) => this.updateUsername(e.target.value)}
+                        />
+                        <Link to={redirect}>
+                            <button
+                                onClick={this.submitUsername}
+                            >Create User</button></Link>
+                    </div>
+                ) : (
                         <h1>Please Sign in</h1>
                     )}
             </div>
