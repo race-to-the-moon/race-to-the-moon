@@ -40,7 +40,7 @@ class Single extends Component {
             physics: {
                 default: 'arcade',
                 arcade: {
-                    gravity: { y: 200 }
+                    gravity: { x: 50, y: 200 }
                 }
             },
             scene: {
@@ -67,22 +67,23 @@ class Single extends Component {
         
         this.asteroid = this.physics.add.image(0, -25, 'asteroid');
         this.asteroid.setDisplaySize( 50, 50 );
-        this.asteroid.setVelocity(100, 200)
-        
-        this.meteorite = this.physics.add.image(this.game.config.width / 2, -25, 'meteorite');
-        this.meteorite.setDisplaySize( 50, 50 );
-        // this.meteorite.setVelocity(100, 200);
-        // this.game.physics.arcade.moveToObject(this.meteorite, this.rocket, 120)
-    }
-    
-    // asteroidFalling() {
+        this.asteroid.setVelocity(100, 200);
+        this.asteroid.setBounce(1, 1)
+        this.asteroid.setCollideWorldBounds(true)
+        this.physics.add.collider(this.rocket, this.asteroid, () => console.log('hello'), null, this)
 
-    // }
+        this.meteorite = this.physics.add.image(200, -25, 'meteorite');
+        this.meteorite.setDisplaySize( 50, 50 );
+        this.meteorite.setVelocity(0, 200);
+        
+        console.log(this)
+        console.log(this.physics)
+        console.log(this.asteroid)
+        console.log(this.game)
+    }
     
     update() {
         this.bg.tilePositionY -= 3;
-        // this.game.Physics.Arcade.moveToObject(this.asteroid, this.rocket, 120)
-        // this.asteroidFalling()
     }
 
 
