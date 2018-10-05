@@ -38,9 +38,10 @@ class Single extends Component {
             renderer: Phaser.AUTO,
             parent: 'render-game',
             physics: {
-                default: 'arcade',
+                default: 'arcade', 
                 arcade: {
-                    gravity: { x: 50, y: 200 }
+                    gravity: { x: 50, y: 200 },
+                    debug: true
                 }
             },
             scene: {
@@ -62,20 +63,21 @@ class Single extends Component {
     create() {
         this.bg = this.add.tileSprite(0, 0, this.game.config.width * 2, this.game.config.height * 2, 'background');
         
-        this.rocket = this.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 170, 'rocket');
+        this.rocket = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 170, 'rocket');
         this.rocket.setDisplaySize( 150, 150 );
+        this.rocket.body.allowGravity = false;
+        this.rocket.body.immovable = true;
         
         this.asteroid = this.physics.add.image(0, -25, 'asteroid');
         this.asteroid.setDisplaySize( 50, 50 );
         this.asteroid.setVelocity(100, 200);
-        this.asteroid.setBounce(1, 1)
-        this.asteroid.setCollideWorldBounds(true)
-        this.physics.add.collider(this.rocket, this.asteroid, () => console.log('hello'), null, this)
-
+        this.asteroid.setBounce(1, 1);
+        
         this.meteorite = this.physics.add.image(200, -25, 'meteorite');
         this.meteorite.setDisplaySize( 50, 50 );
         this.meteorite.setVelocity(0, 200);
-        
+        this.meteorite.setBounce(1,1)
+
         console.log(this)
         console.log(this.physics)
         console.log(this.asteroid)
@@ -84,6 +86,13 @@ class Single extends Component {
     
     update() {
         this.bg.tilePositionY -= 3;
+        this.physics.add.overlap(this.rocket, this.asteroid, this.collisionHandler)
+        this.physics.add.collider(this.rocket, this.meteorite)
+        this.physics.add.collider(this.asteroid, this.meteorite)
+    }
+
+    collisionHandler () {
+        this.asteroid.destroy();
     }
 
 
