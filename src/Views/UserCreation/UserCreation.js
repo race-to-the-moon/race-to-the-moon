@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import './UserCreation.css';
+import Particles from 'react-particles-js';
 
 // Action Creators //
 import { updateTopLvlObj } from '../../ducks/reducer';
@@ -72,17 +74,19 @@ class UserCreation extends Component {
 
         return (
             <div>
+                <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
                 {user_id ? (
-                    <div>
-
-                        <h1>User Creation</h1>
-                        <h3>Please add a Username</h3>
-                        <input type="text"
+                    <div className="whole-creation-div">
+                        <div className="div=around-htags">
+                            <h1 className="user-creation">User Creation</h1>
+                            <h3 className="add-username">Please add a Username</h3>
+                        </div>
+                        <input className="input-box" type="text"
                             placeholder='Username'
                             onChange={(e) => this.updateUsername(e.target.value)}
                         />
                         <Link to={redirect}>
-                            <button
+                            <button className="create-user-button"
                                 onClick={this.submitUsername}
                             >Create User</button></Link>
                     </div>
