@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import './MainMenu.css'
 import { connect } from 'react-redux';
 import axios from 'axios';
+import SettingIcon from '../../srcAssets/settings.icon.png';
+import SoundIcon from '../../srcAssets/Sound-Icon.png';
 
 // Action Creators //
 import { updateTopLvlObj } from '../../ducks/reducer'
@@ -39,7 +41,7 @@ class MainMenu extends Component {
 
         return (
             <div>
-
+                <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
                 {user.user_id ? (
                     <div className='mainMenu-body'>
 
@@ -52,8 +54,8 @@ class MainMenu extends Component {
                             <button>Logout</button>
                         </div>
                         <div className='option-buttons-container'>
-                            <button>'Sound Icon'</button>
-                            <button>Settings Icon</button>
+                        <Link to=""><img src={SoundIcon} alt='Sound-Icon.png'/></Link>
+                            <Link to=""><img className="setting-icon" src={SettingIcon} alt='setting.icon.png'/></Link>
                         </div>
                     </div>
                 ) : (
