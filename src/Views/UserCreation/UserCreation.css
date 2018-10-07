@@ -1,0 +1,55 @@
+.whole-creation-div {
+    background-image: linear-gradient(135deg, rgba(2,0,36,1) 9%, rgba(103,9,121,1) 39%, rgba(0,212,255,1) 81%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.div-around-htags {
+    margin-bottom: 60px;
+}
+
+.user-creation {
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    font-size: 30px;
+    text-shadow: 2px 2px 5px red;
+    margin-left: 85px;
+}
+
+.add-username {
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.input-box {
+    width: 50%;
+    margin-left: 25%;
+    border: none;
+    height: 20px;
+    border-radius: 3px;
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+}
+
+.create-user-button {
+    margin-top: 25px;
+    margin-left: 32%;
+    width: 35%;
+    background-image: linear-gradient(135deg, rgba(2,0,36,1) 9%, rgba(103,9,121,1) 39%, rgba(0,212,255,1) 81%);
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    border: none;
+    height: 50px;
+    font-size: 20px;
+}
+
+
+
+
+
