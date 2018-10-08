@@ -7,14 +7,29 @@ import Phaser from 'phaser';
 // Action Creators //
 import { updateTopLvlObj } from '../../ducks/reducer';
 
+function activateAsteroid (asteroid) {
+    asteroid
+    .setActive(true)
+    .setVisible(true);
+}
+
+function addAsteroid (group) {
+    var asteroid = group.get(Phaser.Math.Between(20, 350), Phaser.Math.Between(-64, 0));
+
+    if (!asteroid) return; // None free
+
+    activateAsteroid(asteroid);
+}
+
 class Single extends Component {
 
     //varriables
-    game = {};
-    bg = '';
-    rocket = '';
-    asteroid = '';
-    meteorite = '';
+    game
+    bg
+    rocket
+    asteroid
+    meteorite
+    asteroidGroup
 
     componentDidMount() {
         if (!this.props.user.user_id) {
@@ -31,6 +46,7 @@ class Single extends Component {
                     console.log(err)
                 })
         }
+
         // Phaser game initiation
         const renderOptions = {
             width: 375,
@@ -56,8 +72,9 @@ class Single extends Component {
     preload() {
         this.load.image('background', 'https://examples.phaser.io/assets/games/invaders/starfield.png')
         this.load.image('rocket', 'assets/rocket.png')
-        this.load.image('asteroid', 'assets/asteroid.png')
+        this.load.image('asteroid', 'assets/asteroid.png');
         this.load.image('meteorite', 'assets/meteorite.png')
+        console.log('preload', this.load)
     }
     
     create() {
@@ -69,40 +86,78 @@ class Single extends Component {
         this.rocket.body.allowGravity = false;
         this.rocket.body.immovable = true;
         
-        this.asteroid = this.physics.add.image(0, -25, 'asteroid');
-        this.asteroid.setDisplaySize( 50, 50 );
-        this.asteroid.setVelocity(100, 200);
-        this.asteroid.setBounce(1, 1);
-        this.asteroid.body.collideWorldBounds = true
+        this.asteroidGroup = this.physics.add.group({
+            defaultKey: 'asteroid',
+            maxSize: 10000,
+            createCallback: (asteroid) => {
+                asteroid.setName('asteroid');
+                console.log('Created', asteroid.name);
+                asteroid.enableBody = true;
+            },
+            removeCallback: (asteroid) => {
+                console.log('Removed', asteroid.name);
+            }
+        });
+    
+        this.time.addEvent({
+            delay: 700,
+            loop: true,
+            callback: () => addAsteroid(this.asteroidGroup)
+        });
 
-        
         this.meteorite = this.physics.add.image(200, -25, 'meteorite');
         this.meteorite.setDisplaySize( 50, 50 );
         this.meteorite.setVelocity(0, 200);
         this.meteorite.setBounce(1,1)
-        this.meteorite.body.collideWorldBounds = true
 
         console.log(this)
-        console.log(this.physics)
-        console.log(this.asteroid)
+        console.log('physics', this.physics)
+        console.log('meteorite', this.meteorite)
         console.log(this.game)
+        console.log('asteroid group', this.asteroidGroup)
+        console.log('entries', this.asteroidGroup.children.entries)
+        console.log('deep physics', this.asteroidGroup)
+
     }
     
     update() {
+        
         this.bg.tilePositionY -= 3;
-        this.physics.add.overlap(this.asteroid, this.rocket, () => {
-            // console.log('destroy')
-            this.asteroid.disableBody(true, true)
-            }, null, this);
+
+        Phaser.Actions.IncY(this.asteroidGroup.getChildren(), 1);
+
+        this.asteroidGroup.children.iterate((asteroid) => {
+            if (asteroid.y > 667) {
+                this.asteroidGroup.killAndHide(asteroid);
+                //may change if too hard ^^^^ to code below.
+
+                // this.asteroidGroup.remove(asteroid.y,true, true)
+
+            }
+        });
+
+        this.asteroidGroup.children.iterate((asteroid) => {
+            this.physics.add.overlap(asteroid, this.rocket, () => {
+                this.asteroidGroup.remove(asteroid,true, true)
+            })
+        });
+        // this.physics.add.overlap(this.asteroidGroup, this.rocket, () => {
+        //     // console.log('destroy')
+        //     for(let i = 0; i < this.asteroidGroup.children.entries.length ; i++){
+        //         this.asteroidGroup.children.entries[i].disableBody(true, true)
+        //     }
+        // });
+
         this.physics.add.overlap(this.meteorite, this.rocket, () => {
             // console.log('destroy')
             this.meteorite.disableBody(true, true)
         });
-        this.physics.add.overlap(this.asteroid, this.meteorite, () => {
-            // console.log('destroy')
-            this.meteorite.disableBody(true, true)
-            this.asteroid.disableBody(true, true)
-        }); 
+
+        // this.physics.add.overlap(this.asteroid, this.meteorite, () => {
+        //     // console.log('destroy')
+        //     this.meteorite.disableBody(true, true)
+        //     this.asteroid.disableBody(true, true)
+        // }); 
     }
 
     render() {
