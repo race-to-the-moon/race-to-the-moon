@@ -9,13 +9,13 @@ import Phaser from 'phaser';
 // Action Creators //
 import { updateTopLvlObj, updateValInObj } from '../../ducks/reducer';
 
-function activateAsteroid (asteroid) {
+function activateAsteroid(asteroid) {
     asteroid
-    .setActive(true)
-    .setVisible(true);
+        .setActive(true)
+        .setVisible(true);
 }
 
-function addAsteroid (group) {
+function addAsteroid(group) {
     var asteroid = group.get(Phaser.Math.Between(20, 350), Phaser.Math.Between(-64, 0));
 
     if (!asteroid) return; // None free
@@ -26,13 +26,17 @@ function addAsteroid (group) {
 
 class Single extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
+
+        this.state={
+            stateHealth: 100
+        }
 
         this.testMethod = this.testMethod.bind(this)
         this.self = this;
     }
-    
+
 
     //variables
     game
@@ -52,21 +56,24 @@ class Single extends Component {
     componentDidMount() {
         if (!this.props.user.user_id) {
             axios.get(`/auth/user`)
-            .then(resp => {
-                console.log(resp.data);
-                
-                this.props.updateTopLvlObj({
-                    what: 'user',
-                    val: resp.data
+                .then(resp => {
+                    console.log(resp.data);
+
+                    this.props.updateTopLvlObj({
+                        what: 'user',
+                        val: resp.data
+                    })
                 })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                .catch(err => {
+                    console.log(err)
+                })
         }
         console.log(this.self);
-        
-        
+        let gravity = 200;
+        if(this.props.rocket.boost){
+            gravity = 400;
+        }
+
         // Phaser game initiation
         const renderOptions = {
             width: 375,
@@ -74,9 +81,9 @@ class Single extends Component {
             renderer: Phaser.AUTO,
             parent: 'render-game',
             physics: {
-                default: 'arcade', 
+                default: 'arcade',
                 arcade: {
-                    gravity: {y: 200 },
+                    gravity: { y: gravity },
                     debug: true
                 }
             },
@@ -89,16 +96,16 @@ class Single extends Component {
                 ]
             },
             self: this.self,
-            
+
         }
         this.game = new Phaser.Game(renderOptions)
 
         //adding compContext property on game to save class context from 'this'
         //this allows you to update outside components or in our case redux within a scene which changes 'this' context to the scene itself
         this.game.compContext = this;
-        console.log('game',this.game)
+        console.log('game', this.game)
     }
-    
+
     preload() {
         this.load.image('background', 'https://examples.phaser.io/assets/games/invaders/starfield.png')
         this.load.image('rocket', 'assets/rocket.png')
@@ -108,38 +115,38 @@ class Single extends Component {
         this.load.image('bullet', 'assets/bullet.png')
         console.log('inside phaser func', this)
     }
-    
+
     create() {
 
         this.bg = this.add.tileSprite(0, 0, this.game.config.width * 2, this.game.config.height * 2, 'background');
-        
+
         this.rocket = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 170, 'rocket');
-        this.rocket.setDisplaySize( 150, 150 );
+        this.rocket.setDisplaySize(150, 150);
         this.rocket.body.isCircle = true;
         this.rocket.enableBody = true;
         this.rocket.body.allowGravity = false;
         this.rocket.body.immovable = true;
-        
+
         this.cannon = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 95, 'cannon')
         this.cannon.setDisplaySize(20, 20);
         // this.cannon.anchor(0.5,0.5)
         this.cannon.body.allowGravity = false;
         this.cannon.body.immovable = true;
-        
-        var Between = Phaser.Math.Distance.Between;
-        var BetweenPoints = Phaser.Math.Angle.BetweenPoints;
-        var SetToAngle = Phaser.Geom.Line.SetToAngle;
-        var velocity = new Phaser.Math.Vector2();
-        var line = new Phaser.Geom.Line();
-        var velocityFromRotation = this.physics.velocityFromRotation;
-        var gfx = this.add.graphics().setDefaultStyles({ lineStyle: { width: 10, color: 0xffdd00, alpha: 0.5 } });
+
+        let Between = Phaser.Math.Distance.Between;
+        let BetweenPoints = Phaser.Math.Angle.BetweenPoints;
+        let SetToAngle = Phaser.Geom.Line.SetToAngle;
+        let velocity = new Phaser.Math.Vector2();
+        let line = new Phaser.Geom.Line();
+        let velocityFromRotation = this.physics.velocityFromRotation;
+        let gfx = this.add.graphics().setDefaultStyles({ lineStyle: { width: 10, color: 0xffdd00, alpha: 0.5 } });
 
         this.bullet = this.physics.add.image(this.cannon.x, this.cannon.y, 'bullet');
         this.bullet.setDisplaySize(40, 40);
         this.bullet.disableBody(true, true);
 
         this.input.on('pointermove', (pointer) => {
-            var angle = BetweenPoints(this.cannon, pointer);
+            let angle = BetweenPoints(this.cannon, pointer);
 
             let distance = Between(this.cannon.x, this.cannon.y, pointer.position.x, pointer.position.y)
 
@@ -153,7 +160,7 @@ class Single extends Component {
             this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(velocity.x, velocity.y);
 
         })
-        
+
         this.asteroidGroup = this.physics.add.group({
             defaultKey: 'asteroid',
             maxSize: 300,
@@ -166,7 +173,7 @@ class Single extends Component {
                 console.log('Removed', asteroid.name);
             }
         });
-    
+
         this.time.addEvent({
             delay: 700,
             loop: true,
@@ -174,9 +181,9 @@ class Single extends Component {
         });
 
         this.meteorite = this.physics.add.image(200, -25, 'meteorite');
-        this.meteorite.setDisplaySize( 50, 50 );
+        this.meteorite.setDisplaySize(50, 50);
         this.meteorite.setVelocity(0, 200);
-        this.meteorite.setBounce(1,1)
+        this.meteorite.setBounce(1, 1)
 
         // console.log(this)
         // console.log('physics', this.physics)
@@ -188,10 +195,26 @@ class Single extends Component {
         // console.log('bullet', this.bullet)
 
     }
-    
+
     update() {
-        
+        const {
+            rocket: { health, time },
+            score: { astScore },
+            updateValInObj
+        } = this.game.compContext.props;
+        const {stateHealth} = this.game.compContext.state;
+
         this.bg.tilePositionY -= 3;
+// 
+        let reduxValInObj = (topLvl,what,val='nothing')=>{
+            // if(what==='health'){
+            //     this.game.compContext.setState({stateHealth: stateHealth-10})
+            //     console.log(stateHealth);
+                
+            //     val = stateHealth -10
+            // }
+            updateValInObj({ topLvl, what, val})
+        }
 
         Phaser.Actions.IncY(this.asteroidGroup.getChildren(), 1);
 
@@ -203,18 +226,40 @@ class Single extends Component {
                 // this.asteroidGroup.remove(asteroid.y,true, true)
 
             }
+
         });
 
         this.asteroidGroup.children.iterate((asteroid) => {
             this.physics.add.overlap(asteroid, this.rocket, () => {
-                this.asteroidGroup.remove(asteroid,true, true)
+                this.asteroidGroup.remove(asteroid, true, true)
+                
+                // REDUX Section
+                // let healthUpdate = health - 10
+                if (health){
+                    console.log('hit');
+                    
+                    reduxValInObj('rocket','health', 0)
+
+                }else{
+                    // healthUpdate = 0
+                    reduxValInObj('rocket','alive', false)
+
+                }
+                reduxValInObj('rocket','boost', false)
+                reduxValInObj('rocket','boostAmt', 0)
+                reduxValInObj('rocket','time')
+                
+                
             })
+            
+            
             this.physics.add.overlap(asteroid, this.bullet, () => {
                 this.asteroidGroup.remove(asteroid, true, true)
                 this.bullet.disableBody(true, true)
                 
                 //using the created this.game property to keep context of this to the class so we can update redux
-                this.game.compContext.props.updateValInObj({topLvl: 'score', what: 'astScore', val: this.game.compContext.props.score.astScore += 10})
+                reduxValInObj('rocket','boostAmt')
+                reduxValInObj('score','astScore')
             })
         });
 
@@ -243,11 +288,12 @@ class Single extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { user, score } = state;
+    const { user, score, rocket } = state;
 
     return {
         user,
-        score
+        score,
+        rocket
     }
 }
 
