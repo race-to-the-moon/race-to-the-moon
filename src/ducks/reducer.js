@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
 
             if(what ==='time'){
                 val=time+3
-            } else if (what === 'health'&&val!==0) {
+            } else if (what === 'health' && health > 0) {
                 val=health-10
             } else if(what === 'astScore'){
                 val=astScore+10
