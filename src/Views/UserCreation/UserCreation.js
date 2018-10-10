@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import './UserCreation.css';
-import Particles from 'react-particles-js';
 
 // Action Creators //
 import { updateTopLvlObj } from '../../ducks/reducer';
