@@ -69,7 +69,7 @@
 }
 
 .setting-icon {
-    animation: setting-icon-spin infinite 20s linear;
+    animation: setting-icon-spin infinite 5s linear;
 }
 
 @keyframes setting-icon-spin {

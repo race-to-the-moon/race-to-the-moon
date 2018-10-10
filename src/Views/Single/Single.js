@@ -6,6 +6,7 @@ import Phaser from 'phaser';
 
 
 
+
 // Action Creators //
 import { updateTopLvlObj, updateValInObj } from '../../ducks/reducer';
 
@@ -242,7 +243,9 @@ class Single extends Component {
                 reduxValInObj('rocket','health',0)
                 reduxValInObj('rocket','boost', false)
                 reduxValInObj('rocket','boostAmt', 0)
-                reduxValInObj('rocket','time')
+                reduxValInObj('rocket','totalTime')
+                reduxValInObj('rocket','timeRemaining')
+
                 
                 
             })

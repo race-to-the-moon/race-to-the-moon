@@ -3,8 +3,8 @@ import initialState from './initialState';
 // // REDUCER // //
 export default (state = initialState, action) => {
     const { type, payload } = action
-    
-    if(payload){
+
+    if (payload) {
         var { topLvl = '',
             nestedObj = '',
             i = '',
@@ -23,16 +23,18 @@ export default (state = initialState, action) => {
 
         case UPDATE_VAL_IN_OBJ:
 
-            const {rocket:{time, health, boostAmt}, score:{astScore}} = newState;
+            const { rocket: { time, health, boostAmt }, score: { astScore } } = newState;
 
-            if(what ==='time'){
-                val=time+3
+            if (what === 'totalTime') {
+                val = newState.rocket[what] + 30
+            } else if (what === 'timeRemaining') {
+                val = newState.rocket[what] + 10 * (val === 'countDown' ? (-1) : 3)
             } else if (what === 'health' && health > 0) {
-                val=health-10
-            } else if(what === 'astScore'){
-                val=astScore+10
-            } else if(what === 'boostAmt'&&val!==0){
-                val=boostAmt + (boostAmt<100?10:0)
+                val = health - 10
+            } else if (what === 'astScore') {
+                val = astScore + 10
+            } else if (what === 'boostAmt' && val !== 0) {
+                val = boostAmt + (boostAmt < 100 ? 10 : 0)
             }
 
             newState[topLvl][what] = val
