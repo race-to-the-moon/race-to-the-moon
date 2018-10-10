@@ -235,16 +235,11 @@ class Single extends Component {
                 
                 // REDUX Section
                 // let healthUpdate = health - 10
-                if (health){
-                    console.log('hit');
-                    
-                    reduxValInObj('rocket','health', 0)
-
-                }else{
-                    // healthUpdate = 0
+                if (!health){
                     reduxValInObj('rocket','alive', false)
-
                 }
+                
+                reduxValInObj('rocket','health',0)
                 reduxValInObj('rocket','boost', false)
                 reduxValInObj('rocket','boostAmt', 0)
                 reduxValInObj('rocket','time')
