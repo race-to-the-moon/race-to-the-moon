@@ -23,6 +23,18 @@ export default (state = initialState, action) => {
 
         case UPDATE_VAL_IN_OBJ:
 
+            const {rocket:{time, health, boostAmt}, score:{astScore}} = newState;
+
+            if(what ==='time'){
+                val=time+3
+            } else if (what === 'health'&&val!==0) {
+                val=health-10
+            } else if(what === 'astScore'){
+                val=astScore+10
+            } else if(what === 'boostAmt'&&val!==0){
+                val=boostAmt + (boostAmt<100?10:0)
+            }
+
             newState[topLvl][what] = val
             return newState
 
