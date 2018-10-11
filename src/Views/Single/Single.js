@@ -72,11 +72,11 @@ class Single extends Component {
                     console.log(err)
                 })
         }
-        console.log(this.self);
-        let gravity = 200;
-        if(this.props.rocket.boost){
-            gravity = 400;
-        }
+        // console.log(this.self);
+        // let gravity = 200;
+        // if(this.props.rocket.boost){
+        //     gravity = 400;
+        // }
 
         // Phaser game initiation
         const renderOptions = {
@@ -87,7 +87,6 @@ class Single extends Component {
             physics: {
                 default: 'arcade',
                 arcade: {
-                    gravity: { y: gravity },
                     debug: true
                 }
             },
@@ -107,7 +106,7 @@ class Single extends Component {
         //adding compContext property on game to save class context from 'this'
         //this allows you to update outside components or in our case redux within a scene which changes 'this' context to the scene itself
         this.game.compContext = this;
-        console.log('game', this.game)
+        // console.log('game', this.game)
     }
 
     preload() {
@@ -117,7 +116,7 @@ class Single extends Component {
         this.load.image('meteorite', 'assets/meteorite.png')
         this.load.image('cannon', 'assets/cannon.png')
         this.load.image('bullet', 'assets/bullet.png')
-        console.log('inside phaser func', this)
+        // console.log('inside phaser func', this)
     }
 
     create() {
@@ -127,6 +126,7 @@ class Single extends Component {
         this.rocket = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 150, 'rocket');
         this.rocket.setDisplaySize(150, 150);
         this.rocket.body.isCircle = true;
+        this.rocket.body.setCircle(140, 115, 40)
         this.rocket.enableBody = true;
         this.rocket.body.allowGravity = false;
         this.rocket.body.immovable = true;
@@ -190,10 +190,11 @@ class Single extends Component {
         this.meteorite.setBounce(1, 1)
 
         // console.log(this)
-        // console.log('physics', this.physics)
+        console.log('physics', this.physics)
         // console.log('meteorite', this.meteorite)
-        // console.log(this.game)
-        // console.log('asteroid group', this.asteroidGroup)
+        console.log('rocket', this.rocket)
+        console.log(this.game)
+        console.log('asteroid group', this.asteroidGroup)
         // console.log('entries', this.asteroidGroup.children.entries)
         // console.log('deep physics', this.asteroidGroup)
         // console.log('bullet', this.bullet)
@@ -202,13 +203,18 @@ class Single extends Component {
 
     update() {
         const {
-            rocket: { health, time },
+            rocket: { health, time, boost, hit},
             score: { astScore },
             updateValInObj
         } = this.game.compContext.props;
         const {stateHealth} = this.game.compContext.state;
 
-        this.bg.tilePositionY -= 3;
+        if(!boost){
+            this.bg.tilePositionY -= 3;
+
+        }else{
+            this.bg.tilePositionY -= 20;
+        }
 // 
         let reduxValInObj = (topLvl,what,val='nothing')=>{
             // if(what==='health'){
@@ -243,6 +249,14 @@ class Single extends Component {
                     reduxValInObj('rocket','alive', false)
                 }
                 
+                if(!hit){
+                    reduxValInObj('rocket', 'invincible', true)
+                    reduxValInObj('rocket', 'hit', true)
+                    setTimeout(() => {
+                        reduxValInObj('rocket', 'invincible', false)
+                        reduxValInObj('rocket', 'hit', false)
+                    }, 3000)
+                }
                 reduxValInObj('rocket','health')
                 // reduxValInObj('rocket','boost', false)
                 reduxValInObj('rocket','boostAmt', 0)
