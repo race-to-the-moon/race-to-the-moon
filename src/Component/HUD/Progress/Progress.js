@@ -15,7 +15,7 @@ function ProgressBar(props) {
 
     // TIME FUNCTION
     function move() {
-        var id = setInterval(frame, 100);
+        var id = setInterval(frame, 1000);
         
         
         function frame() {
