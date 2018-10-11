@@ -1,11 +1,14 @@
 .health-container{
-    height: 100px;
+    height: 85px;
     width: 15px;
-    background: black;
+    background: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 3px;
+    position: absolute;
+    top: 452px;
+    left: 155px;
 }
 
 .health-meter-container{

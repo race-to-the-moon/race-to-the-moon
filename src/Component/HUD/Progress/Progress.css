@@ -32,3 +32,9 @@
     height: 15px;
     width: 15px;
 }
+
+@media(min-width: 1496px){
+    #progress-bar{
+        right: 77%;
+    }
+}

@@ -34,8 +34,10 @@ function Boost(props) {
     return (
         <div className='boost-container'>
             <div className='boost-meter-container'>
+                <p>BOOST</p>
                 <div onClick={() => boosting(boostAmt)}
-                    className={(boostAmt === 100 ? 'boost-button' : 'boost-meter')} style={{ "width": boostAmt + '%' }}>
+                        className={(boostAmt === 100 ? 'boost-button' : 'boost-meter')} 
+                        style={{ "width": boostAmt + '%' }}>
                 </div>
             </div>
         </div>
