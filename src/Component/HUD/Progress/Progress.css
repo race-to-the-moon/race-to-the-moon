@@ -1,0 +1,30 @@
+#progress-bar {
+    height: 100px;
+    width: 0px;
+    border: 1px dotted black;
+    display: flex;
+    margin-left: 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .moon-div {
+    height: 10px;
+    width: 10px;
+}
+
+.rocket-div {
+    height: 10px;
+    width: 10px;
+} */
+
+.moon-icon {
+    height: 15px;
+    width: 15px;
+}
+
+.rocket-icon {
+    height: 15px;
+    width: 15px;
+}
