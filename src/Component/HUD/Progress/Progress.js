@@ -5,15 +5,22 @@ import Rocket from '../../../srcAssets/startup.png';
 import './Progress.css';
 import { updateValInObj } from '../../../ducks/reducer';
 
+
+
 function ProgressBar(props) {
+
+
     var { timeRemaining, totalTime } = props.rocket
     var height = (1 - (timeRemaining / totalTime)) * 100;
+
+    // TIME FUNCTION
     function move() {
-        console.log('Im moving', height)
-        var id = setInterval(frame, 10);
+        var id = setInterval(frame, 1000);
+        
+        
         function frame() {
             console.log('we are in frame', height)
-            if (height >= 50) {
+            if (height === 100) {
                 console.log('we are in frame if statement', height)
 
                 clearInterval(id);
@@ -23,13 +30,14 @@ function ProgressBar(props) {
         }
     }
     return (
-        <div>
+        <div onClick={move}>
             <div id="progress-bar">
                 <div className="moon-div">
                     <img className="moon-icon" src={Moon} />
                 </div>
                 <div className="rocket-div"
-                    style={{ height: height + "%" }}>
+                    style={{ height: height + "%" }}
+                    onClick={move}>
                     <img className="rocket-icon" src={Rocket} />
                 </div>
             </div>
