@@ -203,7 +203,7 @@ class Single extends Component {
 
     update() {
         const {
-            rocket: { health, time, boost },
+            rocket: { health, time, boost, hit},
             score: { astScore },
             updateValInObj
         } = this.game.compContext.props;
@@ -249,6 +249,14 @@ class Single extends Component {
                     reduxValInObj('rocket','alive', false)
                 }
                 
+                if(!hit){
+                    reduxValInObj('rocket', 'invincible', true)
+                    reduxValInObj('rocket', 'hit', true)
+                    setTimeout(() => {
+                        reduxValInObj('rocket', 'invincible', false)
+                        reduxValInObj('rocket', 'hit', false)
+                    }, 3000)
+                }
                 reduxValInObj('rocket','health')
                 // reduxValInObj('rocket','boost', false)
                 reduxValInObj('rocket','boostAmt', 0)
