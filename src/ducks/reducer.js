@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
 
         case UPDATE_VAL_IN_OBJ:
 
-            const { rocket: { time, health, boostAmt }, score: { astScore } } = newState;
+            const { rocket: { time, health, boostAmt, boost }, score: { astScore } } = newState;
 
             if (what === 'totalTime') {
                 val = newState.rocket[what] + 30
@@ -33,6 +33,8 @@ export default (state = initialState, action) => {
                 val = health - 10
             } else if (what === 'astScore') {
                 val = astScore + 10
+            }else if (what === 'boostAmt' && boost === true) {
+                val = boostAmt - (boostAmt > 0 ? .25 : 0)
             } else if (what === 'boostAmt' && val !== 0) {
                 val = boostAmt + (boostAmt < 100 ? 10 : 0)
             }

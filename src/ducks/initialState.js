@@ -6,7 +6,7 @@ module.exports = {
         timeRemaining: 18000,
         alive: true,
         boost: false,
-        boostAmt: 0,
+        boostAmt: 100,
         // location: {},
         invincible: false,
         // rocket: {

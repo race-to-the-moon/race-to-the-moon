@@ -6,6 +6,7 @@ import Phaser from 'phaser';
 import ProgressBar from '../../Component/HUD/Progress/Progress';
 import Score from '../../Component/HUD/Score/Score';
 import Boost from '../../Component/HUD/Boost/Boost';
+import HealthBar from '../../Component/HUD/HB/HealthBar';
 import './Single.css';
 
 
@@ -178,7 +179,7 @@ class Single extends Component {
         });
 
         this.time.addEvent({
-            delay: 3000,
+            delay: 800,
             loop: true,
             callback: () => addAsteroid(this.asteroidGroup)
         });
@@ -274,11 +275,14 @@ class Single extends Component {
             <div className="single-container">
                 {user_id ? (
 
-                    <div className="Hud-div">
-                        <Score />
-                        <ProgressBar />
-                        <Boost />
+                    <div className="game-div">
                         <div id='render-game'/>
+                        <div className='hud-div'>
+                            <Score />
+                            <ProgressBar />
+                            <HealthBar />
+                            <Boost />
+                        </div>
                     </div>
                 ) : (
                         <h1>Please Login</h1>
