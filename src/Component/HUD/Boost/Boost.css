@@ -1,11 +1,15 @@
 .boost-container{
     height: 50px;
     width: 300px;
-    background: black;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 3px;
+    position: absolute;
+    z-index: 1;
+    bottom: 15px;
+    margin-left: calc((100% - 300px) / 2)
 }
 
 .boost-meter-container{

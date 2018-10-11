@@ -1,0 +1,8 @@
+.score-container {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-family: 'Russo One', sans-serif;
+}

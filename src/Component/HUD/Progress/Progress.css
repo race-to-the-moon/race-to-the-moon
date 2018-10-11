@@ -1,12 +1,16 @@
 #progress-bar {
     height: 100px;
     width: 0px;
-    border: 1px dotted black;
+    border-right: 1px dotted white;
     display: flex;
     margin-left: 15px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    z-index: 1;
+    top: 15px;
+    right: 30px;
 }
 
 /* .moon-div {
