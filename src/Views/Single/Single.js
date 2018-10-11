@@ -243,8 +243,8 @@ class Single extends Component {
                     reduxValInObj('rocket','alive', false)
                 }
                 
-                reduxValInObj('rocket','health',0)
-                reduxValInObj('rocket','boost', false)
+                reduxValInObj('rocket','health')
+                // reduxValInObj('rocket','boost', false)
                 reduxValInObj('rocket','boostAmt', 0)
                 reduxValInObj('rocket','totalTime')
                 reduxValInObj('rocket','timeRemaining')
