@@ -1,0 +1,24 @@
+.health-container{
+    height: 100px;
+    width: 15px;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.health-meter-container{
+    width: 80%;
+    height: 97%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.health-meter{
+    width: 100%;
+    background: rgb(36, 228, 36);
+    border-radius: 5px;
+}
