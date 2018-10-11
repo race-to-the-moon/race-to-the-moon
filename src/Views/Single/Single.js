@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Phaser from 'phaser';
 
-
+import Boost from '../../Component/HUD/Boost/Boost'
 
 
 // Action Creators //
@@ -176,7 +176,7 @@ class Single extends Component {
         });
 
         this.time.addEvent({
-            delay: 3000,
+            delay: 800,
             loop: true,
             callback: () => addAsteroid(this.asteroidGroup)
         });
@@ -274,6 +274,7 @@ class Single extends Component {
 
                     <div>
                         <h1>Single Player</h1>
+                        <Boost />
                         <div id='render-game'/>
                         <Link to='/mainmenu'><button>Go To Main Menu</button></Link>
                     </div>
