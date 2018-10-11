@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Phaser from 'phaser';
-
-
+import ProgressBar from '../../Component/HUD/Progress/Progress';
+import Score from '../../Component/HUD/Score/Score';
+import Boost from '../../Component/HUD/Boost/Boost';
+import './Single.css';
 
 
 // Action Creators //
@@ -269,13 +271,14 @@ class Single extends Component {
     render() {
         const { user_id } = this.props.user
         return (
-            <div>
+            <div className="single-container">
                 {user_id ? (
 
-                    <div>
-                        <h1>Single Player</h1>
+                    <div className="Hud-div">
+                        <Score />
+                        <ProgressBar />
+                        <Boost />
                         <div id='render-game'/>
-                        <Link to='/mainmenu'><button>Go To Main Menu</button></Link>
                     </div>
                 ) : (
                         <h1>Please Login</h1>

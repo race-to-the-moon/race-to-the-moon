@@ -33,7 +33,6 @@ function ProgressBar(props) {
                     <img className="rocket-icon" src={Rocket} />
                 </div>
             </div>
-            <button onClick={move}></button>
         </div>
     )
 }
