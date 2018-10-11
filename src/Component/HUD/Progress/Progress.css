@@ -1,4 +1,4 @@
-#progress-bar {
+.progress-bar {
     height: 100px;
     width: 0px;
     border-right: 1px dotted white;
@@ -11,6 +11,10 @@
     z-index: 1;
     top: 15px;
     left: 330px;
+}
+
+.hit {
+    
 }
 
 .moon-div {
@@ -31,6 +35,7 @@
 .rocket-icon {
     height: 15px;
     width: 15px;
+    transform: rotate(45deg);
 }
 
 /* @media(min-width: 1496px){

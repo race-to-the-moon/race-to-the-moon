@@ -31,7 +31,7 @@ function ProgressBar(props) {
     }
     return (
         <div onClick={move}>
-            <div id="progress-bar">
+            <div className="progress-bar">
                 <div className="moon-div">
                     <img className="moon-icon" src={Moon} />
                 </div>
