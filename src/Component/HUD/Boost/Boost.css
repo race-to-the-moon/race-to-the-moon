@@ -1,0 +1,30 @@
+.boost-container{
+    height: 50px;
+    width: 300px;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.boost-meter-container{
+    width: 95%;
+    height: 75%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.boost-meter{
+    width: 50%;
+    height: 100%;
+    background: rgb(36, 222, 228);
+    border-radius: 5px;
+}
+
+.boost-button{
+    height: 100%;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+}

@@ -5,7 +5,6 @@ import axios from 'axios';
 import Phaser from 'phaser';
 
 
-
 // Action Creators //
 import { updateTopLvlObj, updateValInObj } from '../../ducks/reducer';
 
@@ -120,14 +119,14 @@ class Single extends Component {
 
         this.bg = this.add.tileSprite(0, 0, this.game.config.width * 2, this.game.config.height * 2, 'background');
 
-        this.rocket = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 170, 'rocket');
+        this.rocket = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 150, 'rocket');
         this.rocket.setDisplaySize(150, 150);
         this.rocket.body.isCircle = true;
         this.rocket.enableBody = true;
         this.rocket.body.allowGravity = false;
         this.rocket.body.immovable = true;
 
-        this.cannon = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 95, 'cannon')
+        this.cannon = this.physics.add.image(this.game.config.width / 2, (this.game.config.height / 2) + 80, 'cannon')
         this.cannon.setDisplaySize(20, 20);
         // this.cannon.anchor(0.5,0.5)
         this.cannon.body.allowGravity = false;
@@ -175,7 +174,7 @@ class Single extends Component {
         });
 
         this.time.addEvent({
-            delay: 700,
+            delay: 3000,
             loop: true,
             callback: () => addAsteroid(this.asteroidGroup)
         });
@@ -271,7 +270,7 @@ class Single extends Component {
 
                     <div>
                         <h1>Single Player</h1>
-                        <div id='render-game' />
+                        <div id='render-game'/>
                         <Link to='/mainmenu'><button>Go To Main Menu</button></Link>
                     </div>
                 ) : (
