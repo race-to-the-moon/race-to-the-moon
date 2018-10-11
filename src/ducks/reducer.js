@@ -38,7 +38,7 @@ export default (state = initialState, action) => {
             if (what === 'totalTime') {
                 val = newState.rocket[what] + 3000
             } else if (what === 'timeRemaining'&& timeRemaining) {
-                val = newState.rocket[what] + 20 * (val === 'countDown' ? (-50) : 150)
+                val = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : 300)
             } else if (what === 'timeRemaining'){
                 val = 0
             } else if (what === 'health' && health > 0 && !invincible) {
