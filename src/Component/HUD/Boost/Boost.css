@@ -8,8 +8,8 @@
     border-radius: 5px;
     position: absolute;
     z-index: 1;
-    bottom: 15px;
-    margin-left: calc((100% - 300px) / 2);
+    top: 590px;
+    left: 35px;
 }
 
 .boost-meter-container{
@@ -43,9 +43,9 @@
     border-radius: 5px;
 }
 
-@media (min-width: 1496px){
+/* @media (min-width: 1496px){
     .boost-container {
         margin-left: 40px;
         bottom: 240px;
     }
-}
+} */

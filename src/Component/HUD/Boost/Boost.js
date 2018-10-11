@@ -5,7 +5,7 @@ import './Boost.css'
 import { updateValInObj } from '../../../ducks/reducer';
 
 function Boost(props) {
-    const { boostAmt, updateValInObj} = props;
+    const {boostAmt, updateValInObj} = props;
 
     let reduxValInObj = (topLvl, what, val = 'nothing') => {
         updateValInObj({ topLvl, what, val })
@@ -16,9 +16,11 @@ function Boost(props) {
     const boosting = (boostAmt) => {
         if (boostAmt === 100) {
             reduxValInObj('rocket', 'boost', true)
+            reduxValInObj('rocket', 'invincible', true)
             const updatingBoost = () => {
                 if (boostAmt === 0) {
                     reduxValInObj('rocket', 'boost', false)
+                    reduxValInObj('rocket', 'invincible', false)
                     return;
                 }
                 setTimeout(() => {
@@ -45,7 +47,7 @@ function Boost(props) {
 }
 
 const mapStateToProps = (state) => {
-    const { rocket: { boostAmt } } = state
+    const { rocket: {boostAmt} } = state
 
     return {
         boostAmt
@@ -57,3 +59,5 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Boost);
+
+//with a space
