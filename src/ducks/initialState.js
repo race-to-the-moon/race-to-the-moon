@@ -15,6 +15,7 @@ module.exports = {
         //     thruster: ''
         // }
     },
+    gameOn: false,
     // asteroid: [
     //     {
     //         // location: {},
