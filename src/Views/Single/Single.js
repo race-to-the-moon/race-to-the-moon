@@ -118,11 +118,13 @@ class Single extends Component {
             self: this.self,
 
         }
-        this.game = new Phaser.Game(renderOptions)
+        setTimeout(() =>{
+            this.game = new Phaser.Game(renderOptions)
+            this.game.compContext = this;
+        }, 3000)
 
         //adding compContext property on game to save class context from 'this'
         //this allows you to update outside components or in our case redux within a scene which changes 'this' context to the scene itself
-        this.game.compContext = this;
         // console.log('game', this.game)
     }
 
@@ -137,6 +139,13 @@ class Single extends Component {
     }
 
     create() {
+        const {updateTopLvlObj} = this.game.compContext.props;
+
+        let reduxTopLvlObj = (what,val='nothing')=>{
+            updateTopLvlObj({what, val})
+        }
+
+        reduxTopLvlObj('gameOn', true)
 
         this.bg = this.add.tileSprite(0, 0, this.game.config.width * 2, this.game.config.height * 2, 'background');
 
@@ -218,7 +227,7 @@ class Single extends Component {
         });
 
         this.time.addEvent({
-            delay: 8000,
+            delay: 7000,
             loop: true,
             callback: () => addMeteor(this.meteorGroup)
         });
@@ -295,8 +304,6 @@ class Single extends Component {
         this.meteorGroup.children.iterate((meteor) => {
             if(boost){
                 this.meteorGroup.setVelocityY(7000)
-            }else if(hit){
-                this.meteorGroup.setVelocityY(400)
             }else{
                 this.meteorGroup.setVelocityY(1000)
             }
@@ -402,12 +409,13 @@ class Single extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { user, score, rocket } = state;
+    const { user, score, rocket, gameOn } = state;
 
     return {
         user,
         score,
-        rocket
+        rocket,
+        gameOn
     }
 }
 

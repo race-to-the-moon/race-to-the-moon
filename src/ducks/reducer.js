@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
             }else if (what === 'boostAmt' && boost === true) {
                 val = boostAmt - (boostAmt > 0 ? .25 : 0)
             } else if (what === 'boostAmt' && val !== 0) {
-                val = boostAmt + (boostAmt < 100 ? 10 : 0)
+                val = boostAmt + (boostAmt < 100 ? 5 : 0)
             }
 
             newState[topLvl][what] = val
