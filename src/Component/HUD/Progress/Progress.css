@@ -13,9 +13,6 @@
     left: 330px;
 }
 
-.hit {
-    
-}
 
 .moon-div {
     height: 15px;
@@ -35,7 +32,32 @@
 .rocket-icon {
     height: 15px;
     width: 15px;
+    border-radius: 50%;
     transform: rotate(45deg);
+}
+
+
+.hit {
+    width: 30px;
+    height: 30px;
+    transform: rotate(45deg);
+    animation-name: rocket;
+    animation-duration: 3s;
+}
+
+
+@keyframes rocket {
+    0%   {transform: rotate(75deg);}
+    10%   {transform: rotate(15deg);}
+    20%   {transform: rotate(75deg);}
+    30%   {transform: rotate(15deg);}
+    40%   {transform: rotate(75deg);}
+    50%  {transform: rotate(15deg);}
+    60%  {transform: rotate(75deg);}
+    70%  {transform: rotate(15deg);}
+    80% {transform: rotate(75deg);}
+    90% {transform: rotate(15deg);}
+    100% {transform: rotate(75deg);}
 }
 
 /* @media(min-width: 1496px){

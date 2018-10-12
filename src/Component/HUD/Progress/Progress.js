@@ -29,6 +29,8 @@ function ProgressBar(props) {
             }
         }
     }
+
+
     return (
         <div onClick={move}>
             <div className="progress-bar">
@@ -38,7 +40,9 @@ function ProgressBar(props) {
                 <div className="rocket-div"
                     style={{ height: height + "%" }}
                     onClick={move}>
-                    <img className="rocket-icon" src={Rocket} />
+                    <img 
+                    className={props.rocket.hit ? "hit" : "rocket-icon"} 
+                    src={Rocket} />
                 </div>
             </div>
         </div>
