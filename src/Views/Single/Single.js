@@ -121,6 +121,14 @@ class Single extends Component {
         setTimeout(() =>{
             this.game = new Phaser.Game(renderOptions)
             this.game.compContext = this;
+            const {updateTopLvlObj} = this.game.compContext.props;
+        
+            let reduxTopLvlObj = (what,val='nothing')=>{
+                updateTopLvlObj({what, val})
+            }
+        
+            reduxTopLvlObj('gameOn', true)
+
         }, 3000)
 
         //adding compContext property on game to save class context from 'this'
@@ -139,13 +147,6 @@ class Single extends Component {
     }
 
     create() {
-        const {updateTopLvlObj} = this.game.compContext.props;
-
-        let reduxTopLvlObj = (what,val='nothing')=>{
-            updateTopLvlObj({what, val})
-        }
-
-        reduxTopLvlObj('gameOn', true)
 
         this.bg = this.add.tileSprite(0, 0, this.game.config.width * 2, this.game.config.height * 2, 'background');
 

@@ -3,36 +3,47 @@ import { connect } from 'react-redux';
 import Moon from '../../../srcAssets/moon.png';
 import Rocket from '../../../srcAssets/startup.png';
 import './Progress.css';
-import { updateValInObj } from '../../../ducks/reducer';
+import { updateValInObj, updateTopLvlObj } from '../../../ducks/reducer';
 
 
 
 function ProgressBar(props) {
 
 
-    var { timeRemaining, totalTime } = props.rocket
+    var { rocket: {
+        timeRemaining,
+        totalTime
+    },
+        gameOn,
+        updateTopLvlObj,
+        updateValInObj
+    } = props;
     var height = (1 - (timeRemaining / totalTime)) * 100;
 
     // TIME FUNCTION
+
     function move() {
-        var id = setInterval(frame, 1000);
-        
-        
+        var id = setInterval(frame, 500);
+
+
         function frame() {
-            console.log('we are in frame', height)
-            if (height === 100) {
+            if (!timeRemaining) {
                 console.log('we are in frame if statement', height)
 
                 clearInterval(id);
+                updateTopLvlObj({ what: 'gameOn', val: false })
             } else {
-                props.updateValInObj({ topLvl: 'rocket', what: 'timeRemaining', val: 'countDown' })
+                updateValInObj({ topLvl: 'rocket', what: 'timeRemaining', val: 'countDown' })
             }
         }
+    }
+    if (gameOn && timeRemaining === totalTime) {
+        move()
     }
 
 
     return (
-        <div onClick={move}>
+        <div>
             <div className="progress-bar">
                 <div className="moon-div">
                     <img className="moon-icon" src={Moon} />
@@ -40,9 +51,9 @@ function ProgressBar(props) {
                 <div className="rocket-div"
                     style={{ height: height + "%" }}
                     onClick={move}>
-                    <img 
-                    className={props.rocket.hit ? "hit" : "rocket-icon"} 
-                    src={Rocket} />
+                    <img
+                        className={props.rocket.hit ? "hit" : "rocket-icon"}
+                        src={Rocket} />
                 </div>
             </div>
         </div>
@@ -50,10 +61,16 @@ function ProgressBar(props) {
 }
 
 function mapStateToProps(state) {
-    const { rocket } = state
+    const { rocket, gameOn } = state
     return {
-        rocket
+        rocket,
+        gameOn
     }
 }
 
-export default connect(mapStateToProps, { updateValInObj })(ProgressBar);
+const mapDispatchToProps = {
+    updateValInObj,
+    updateTopLvlObj
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProgressBar);
