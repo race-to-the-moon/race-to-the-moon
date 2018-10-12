@@ -28,6 +28,22 @@ function addAsteroid(group) {
 }
 
 
+
+function activateMeteor(meteor) {
+    meteor
+        .setActive(true)
+        .setVisible(true);
+}
+
+function addMeteor(group) {
+    var meteor = group.get(Phaser.Math.Between(20, 350), Phaser.Math.Between(-64, 0));
+
+    if (!meteor) return; // None free
+
+    activateMeteor(meteor);
+}
+
+
 class Single extends Component {
 
     constructor(props) {
@@ -42,16 +58,20 @@ class Single extends Component {
     }
 
 
-    //variables
+    //variables      
     game
     bg
     rocket
     asteroid
-    meteorite
+    meteor
     asteroidGroup
+    meteorGroup
     cannon
     bullet
     baller
+    bgSpeed
+    cursors
+    velocity
 
     testMethod(reduxMethodName, data) {
         this.props[reduxMethodName](data)
@@ -93,10 +113,7 @@ class Single extends Component {
             scene: {
                 preload: this.preload,
                 create: this.create,
-                update: this.update,
-                extends: [
-                    this.updateRedux
-                ]
+                update: this.update
             },
             self: this.self,
 
@@ -140,7 +157,7 @@ class Single extends Component {
         let Between = Phaser.Math.Distance.Between;
         let BetweenPoints = Phaser.Math.Angle.BetweenPoints;
         let SetToAngle = Phaser.Geom.Line.SetToAngle;
-        let velocity = new Phaser.Math.Vector2();
+        this.velocity = new Phaser.Math.Vector2();
         let line = new Phaser.Geom.Line();
         let velocityFromRotation = this.physics.velocityFromRotation;
         let gfx = this.add.graphics().setDefaultStyles({ lineStyle: { width: 10, color: 0xffdd00, alpha: 0.5 } });
@@ -155,19 +172,22 @@ class Single extends Component {
             let distance = Between(this.cannon.x, this.cannon.y, pointer.position.x, pointer.position.y)
 
             SetToAngle(line, this.cannon.x, this.cannon.y, angle, distance);
-            velocityFromRotation(angle, 600, velocity);
+            velocityFromRotation(angle, 1000, this.velocity);
             gfx.clear().strokeLineShape(line);
         }, this);
 
+        this.cursors = this.input.keyboard.createCursorKeys()
+
         this.input.on('pointerup', () => {
             console.log('clicked')
-            this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(velocity.x, velocity.y);
-
+            this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(this.velocity.x, this.velocity.y);
         })
+
+        console.log('input', this.input)
 
         this.asteroidGroup = this.physics.add.group({
             defaultKey: 'asteroid',
-            maxSize: 300,
+            maxSize: 10,
             createCallback: (asteroid) => {
                 asteroid.setName('asteroid');
                 console.log('Created', asteroid.name);
@@ -179,15 +199,29 @@ class Single extends Component {
         });
 
         this.time.addEvent({
-            delay: 800,
+            delay: 400,
             loop: true,
             callback: () => addAsteroid(this.asteroidGroup)
         });
 
-        this.meteorite = this.physics.add.image(200, -25, 'meteorite');
-        this.meteorite.setDisplaySize(50, 50);
-        this.meteorite.setVelocity(0, 200);
-        this.meteorite.setBounce(1, 1)
+        this.meteorGroup = this.physics.add.group({
+            defaultKey: 'meteorite',
+            maxSize: 1,
+            createCallback: (meteor) => {
+                meteor.setName('meteorite');
+                console.log('Created', meteor.name);
+                meteor.enableBody = true;
+            },
+            removeCallback: (meteor) => {
+                console.log('Removed', meteor.name);
+            }
+        });
+
+        this.time.addEvent({
+            delay: 10000,
+            loop: true,
+            callback: () => addMeteor(this.meteorGroup)
+        });
 
         // console.log(this)
         console.log('physics', this.physics)
@@ -209,12 +243,20 @@ class Single extends Component {
         } = this.game.compContext.props;
         const {stateHealth} = this.game.compContext.state;
 
-        if(!boost){
-            this.bg.tilePositionY -= 3;
-
-        }else{
-            this.bg.tilePositionY -= 20;
+        if(this.cursors.space.isDown){
+            console.log('clicked')
+            this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(this.velocity.x, this.velocity.y);
         }
+        
+        if(hit){
+            this.bgSpeed = 1
+        }else if(boost){
+            this.bgSpeed = 20
+        }else {
+            this.bgSpeed = 3
+        }
+
+        this.bg.tilePositionY -= this.bgSpeed
 // 
         let reduxValInObj = (topLvl,what,val='nothing')=>{
             // if(what==='health'){
@@ -229,6 +271,14 @@ class Single extends Component {
         Phaser.Actions.IncY(this.asteroidGroup.getChildren(), 1);
 
         this.asteroidGroup.children.iterate((asteroid) => {
+            if(boost){
+                this.asteroidGroup.setVelocityY(7000)
+            }else if(hit){
+                this.asteroidGroup.setVelocityY(50)
+            }else{
+                this.asteroidGroup.setVelocityY(300)
+            }
+
             if (asteroid.y > 667) {
                 this.asteroidGroup.killAndHide(asteroid);
                 //may change if too hard ^^^^ to code below.
@@ -238,6 +288,25 @@ class Single extends Component {
             }
 
         });
+
+
+        Phaser.Actions.IncY(this.meteorGroup.getChildren(), 1);
+
+        this.meteorGroup.children.iterate((meteor) => {
+            if(boost){
+                this.meteorGroup.setVelocityY(7000)
+            }else if(hit){
+                this.meteorGroup.setVelocityY(400)
+            }else{
+                this.meteorGroup.setVelocityY(1000)
+            }
+
+            if (meteor.y > 667) {
+                this.meteorGroup.killAndHide(meteor);
+            }
+
+        });
+
 
         this.asteroidGroup.children.iterate((asteroid) => {
             this.physics.add.overlap(asteroid, this.rocket, () => {
@@ -249,25 +318,20 @@ class Single extends Component {
                     reduxValInObj('rocket','alive', false)
                 }
                 
-                if(!hit){
-                    reduxValInObj('rocket', 'invincible', true)
-                    reduxValInObj('rocket', 'hit', true)
+                reduxValInObj('rocket', 'health')
+                reduxValInObj('rocket', 'hit', true)
+                reduxValInObj('rocket', 'invincible', true)
+                // if(!hit){
                     setTimeout(() => {
-                        reduxValInObj('rocket', 'invincible', false)
                         reduxValInObj('rocket', 'hit', false)
+                        reduxValInObj('rocket', 'invincible', false)
                     }, 3000)
-                }
-                reduxValInObj('rocket','health')
+                // }
                 // reduxValInObj('rocket','boost', false)
                 reduxValInObj('rocket','boostAmt', 0)
                 reduxValInObj('rocket','totalTime')
                 reduxValInObj('rocket','timeRemaining')
-
-                
-                
-            })
-            
-            
+            })  
             this.physics.add.overlap(asteroid, this.bullet, () => {
                 this.asteroidGroup.remove(asteroid, true, true)
                 this.bullet.disableBody(true, true)
@@ -278,9 +342,40 @@ class Single extends Component {
             })
         });
 
-        this.physics.add.overlap(this.meteorite, this.rocket, () => {
-            this.meteorite.disableBody(true, true)
-        });
+        this.meteorGroup.children.iterate((meteor) => {
+            this.physics.add.overlap(meteor, this.rocket, () => {
+                this.meteorGroup.remove(meteor, true, true)
+                
+                // REDUX Section
+                // let healthUpdate = health - 10
+                if (!health){
+                    reduxValInObj('rocket','alive', false)
+                }
+                
+                reduxValInObj('rocket', 'health')
+                reduxValInObj('rocket', 'hit', true)
+                reduxValInObj('rocket', 'invincible', true)
+                // if(!hit){
+                    setTimeout(() => {
+                        reduxValInObj('rocket', 'hit', false)
+                        reduxValInObj('rocket', 'invincible', false)
+                    }, 3000)
+                // }
+                // reduxValInObj('rocket','boost', false)
+                reduxValInObj('rocket','boostAmt', 0)
+                reduxValInObj('rocket','totalTime')
+                reduxValInObj('rocket','timeRemaining')
+            })
+
+        this.physics.add.overlap(meteor, this.bullet, () => {
+            this.meteorGroup.remove(meteor, true, true)
+            this.bullet.disableBody(true, true)
+            
+            //using the created this.game property to keep context of this to the class so we can update redux
+            reduxValInObj('rocket','boostAmt', 100)
+            reduxValInObj('score','astScore')
+        })
+    });
     }
 
     render() {
