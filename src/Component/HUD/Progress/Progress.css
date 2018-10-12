@@ -1,4 +1,4 @@
-#progress-bar {
+.progress-bar {
     height: 100px;
     width: 0px;
     border-right: 1px dotted white;
@@ -12,6 +12,7 @@
     top: 15px;
     left: 330px;
 }
+
 
 .moon-div {
     height: 15px;
@@ -31,6 +32,33 @@
 .rocket-icon {
     height: 15px;
     width: 15px;
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+
+
+.hit {
+    width: 25px;
+    height: 25px;
+    transform: rotate(45deg);
+    animation-name: rocket;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+}
+
+
+@keyframes rocket {
+    0%   {transform: rotate(75deg);}
+    10%   {transform: rotate(15deg);}
+    20%   {transform: rotate(75deg);}
+    30%   {transform: rotate(15deg);}
+    40%   {transform: rotate(75deg);}
+    50%  {transform: rotate(15deg);}
+    60%  {transform: rotate(75deg);}
+    70%  {transform: rotate(15deg);}
+    80% {transform: rotate(75deg);}
+    90% {transform: rotate(15deg);}
+    100% {transform: rotate(75deg);}
 }
 
 /* @media(min-width: 1496px){
