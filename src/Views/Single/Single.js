@@ -218,7 +218,7 @@ class Single extends Component {
         });
 
         this.time.addEvent({
-            delay: 10000,
+            delay: 8000,
             loop: true,
             callback: () => addMeteor(this.meteorGroup)
         });
