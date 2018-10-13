@@ -5,13 +5,12 @@ import './Boost.css'
 import { updateValInObj } from '../../../ducks/reducer';
 
 function Boost(props) {
-    const {boostAmt, updateValInObj} = props;
+    const { boostAmt, updateValInObj } = props;
 
     let reduxValInObj = (topLvl, what, val = 'nothing') => {
         updateValInObj({ topLvl, what, val })
     }
 
-    //The base case never gets hit because boostAmt is not updating from redux
 
     const boosting = (boostAmt) => {
         if (boostAmt === 100) {
@@ -35,13 +34,37 @@ function Boost(props) {
         }
     }
 
+    function handler(event) {
+        alert(`
+            key: ${event.key}
+            keyCode: ${event.keyCode}
+            altKey: ${event.altKey}
+            ctrlKey: ${event.ctrlKey}
+            metaKey: ${event.metaKey}
+            shiftKey: ${event.shiftKey}
+        `)
+    }
+
+    const onKeyPress = (shiftKey) => {
+        if (shiftKey) {
+
+            boosting(boostAmt);
+        }
+
+    }
+
     return (
         <div className='boost-container'>
             <div className='boost-meter-container'>
                 <p>BOOST</p>
-                <div onClick={() => boosting(boostAmt)}
-                        className={(boostAmt === 100 ? 'boost-button' : 'boost-meter')} 
-                        style={{ "width": boostAmt + '%' }}>
+                <div
+                    onClick={() => boosting(boostAmt)}
+                    onKeyDown={event => alert(event.shiftKey)}
+                    // onKeyDown={handler}
+                    onKeyPress={handler}
+                    onKeyUp={handler}
+                    className={(boostAmt === 100 ? 'boost-button' : 'boost-meter')}
+                    style={{ "width": boostAmt + '%' }}>
                 </div>
             </div>
         </div>
@@ -49,7 +72,7 @@ function Boost(props) {
 }
 
 const mapStateToProps = (state) => {
-    const { rocket: {boostAmt} } = state
+    const { rocket: { boostAmt } } = state
 
     return {
         boostAmt
