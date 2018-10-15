@@ -20,8 +20,8 @@ export default function Login() {
                 <h1 className="rttm">Race to the moon!</h1>
                 <button className="login-button" onClick={login}>Please Login</button>
             </div>
-            <div className="moon-div">
-                <img className="moon-image" src={Moon} alt="Login_moon"/>
+            <div className="login-moon-div">
+                <img className="login-moon-image" src={Moon} alt="Login_moon"/>
             </div>
         </div>
     )
