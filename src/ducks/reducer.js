@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
 
             const { 
                 rocket: { 
-                    time, 
+                    totalTime, 
                     health, 
                     boostAmt, 
                     boost, 
@@ -37,9 +37,9 @@ export default (state = initialState, action) => {
             } = newState;
 
             if (what === 'totalTime') {
-                val = newState.rocket[what] + 3000
+                val = totalTime + (!boost ? 3000 : 0)
             } else if (what === 'timeRemaining'&& timeRemaining) {
-                val = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : 300)
+                val = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : (!boost ? 300 : 0))
             } else if (what === 'timeRemaining'){
                 val = 0
             } else if (what === 'health' && health > 0 && !invincible && !boost && !hit) {
