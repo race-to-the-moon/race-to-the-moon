@@ -52,18 +52,19 @@
     text-shadow: 2px 2px 5px red;
 }
 
-.moon-div {
+.login-moon-div {
     /* height: 320px;
     width: 100%; */
     display: flex;
     justify-content: center;
+    border-radius: 50%;
 }
 
-.moon-image {
-    width: 50%;
-    height: 50%;
+.login-moon-image {
+    width: 240px;
+    height: 240px;
     animation: Moon-logo-spin infinite 20s linear;
-    border-radius: none;
+    border-radius: 100%;
     box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
 }
 
