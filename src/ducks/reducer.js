@@ -33,13 +33,14 @@ export default (state = initialState, action) => {
                     timeRemaining,
                     hit
                 }, 
-                score: { astScore } 
+                score: { astScore },
+                gameOn 
             } = newState;
 
             if (what === 'totalTime') {
                 val = totalTime + (!boost ? 3000 : 0)
             } else if (what === 'timeRemaining'&& timeRemaining) {
-                val = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : (!boost ? 300 : 0))
+                val = newState.rocket[what] + 10 * (val === 'countDown' ? (gameOn ? -50 : 0) : (!boost ? 300 : 0))
             } else if (what === 'timeRemaining'){
                 val = 0
             } else if (what === 'health' && health > 0 && !invincible && !boost && !hit) {
