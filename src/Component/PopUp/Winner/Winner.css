@@ -1,0 +1,105 @@
+.winning-div {
+    background-image: linear-gradient(135deg, rgba(2,0,36,1) 9%, rgba(103,9,121,1) 39%, rgba(0,212,255,1) 81%);    height: 667px;
+    position: absolute;
+    z-index: 10;
+    width: 375px;
+    height: 667px;
+}
+
+.winning-message {
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    font-size: 25px;
+    margin-left: 80px;
+    margin-top: 50px;
+    text-shadow: 2px 2px 5px red;
+}
+
+.winning-button-container {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.winning-button-container button {
+    background-image: linear-gradient(135deg, rgba(2,0,36,1) 9%, rgba(103,9,121,1) 39%, rgba(0,212,255,1) 81%);
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    border: none;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+}
+
+.winning-score {
+    position: absolute;
+    z-index: 10;
+    font-size: 50px;
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    left: 35%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    overflow: hidden;
+  }
+  .pyro > .before, .pyro > .after {
+    position: absolute;
+    left: 200px;
+    top: 670px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff;
+    -moz-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+    -webkit-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+    -o-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+    -ms-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+    animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+  }
+
+  .pyro > .after {
+    -moz-animation-delay: 1.25s, 1.25s, 1.25s;
+    -webkit-animation-delay: 1.25s, 1.25s, 1.25s;
+    -o-animation-delay: 1.25s, 1.25s, 1.25s;
+    -ms-animation-delay: 1.25s, 1.25s, 1.25s;
+    animation-delay: 1.25s, 1.25s, 1.25s;
+    -moz-animation-duration: 1.25s, 1.25s, 6.25s;
+    -webkit-animation-duration: 1.25s, 1.25s, 6.25s;
+    -o-animation-duration: 1.25s, 1.25s, 6.25s;
+    -ms-animation-duration: 1.25s, 1.25s, 6.25s;
+    animation-duration: 1.25s, 1.25s, 6.25s;
+  }
+  @-webkit-keyframes bang {
+    to {
+      box-shadow: 236px -374.66667px #00ffbf, -76px 6.33333px #1f0, 118px -356.66667px #80f, -168px 55.33333px #8f0, -157px -248.66667px #0008ff, 161px -373.66667px #ff008c, 189px 42.33333px #0fe, -242px -76.66667px #ff0048, 67px -268.66667px #60f, 88px -234.66667px #00ff7b, -4px -90.66667px #f04, -86px -80.66667px #fffb00, -4px -2.66667px #00f7ff, -80px 41.33333px #00ffae, 124px -228.66667px #f04, 48px -78.66667px #e6ff00, 123px 39.33333px #ff006f, 98px -178.66667px #bf0, -75px -165.66667px #3f0, 62px -247.66667px #00ff2b, 10px -117.66667px #00ffd0, -182px -381.66667px #8c00ff, -47px -116.66667px #00f2ff, -34px -246.66667px #0fa, -120px -357.66667px #04f, 29px -224.66667px #fd0, 90px 42.33333px #0cf, -105px -201.66667px #08f, -146px -25.66667px #f08, 177px -141.66667px #b7ff00, -157px -276.66667px #a6ff00, -204px 16.33333px #ff0, 202px -241.66667px #005eff, -140px -45.66667px #0af, 68px -181.66667px #00ffae, 73px -222.66667px #00ff6a, -206px -357.66667px #ff00ea, -75px 71.33333px #0f9, -201px -24.66667px #ff0015, -76px -335.66667px #ff00ae, -46px -162.66667px #ff0040, -212px -66.66667px #fff200, 86px -253.66667px #e600ff, 228px -257.66667px #00ff1a, 6px -255.66667px #6a00ff, 112px -1.66667px #00ffa6, -87px 32.33333px #af0, 49px -380.66667px #9100ff, -34px -209.66667px #2f00ff, 26px 65.33333px #ff00ae, -98px -132.66667px #5f0;
+    }
+  }
+  @-moz-keyframes bang {
+    to {
+      box-shadow: 236px -374.66667px #00ffbf, -76px 6.33333px #1f0, 118px -356.66667px #80f, -168px 55.33333px #8f0, -157px -248.66667px #0008ff, 161px -373.66667px #ff008c, 189px 42.33333px #0fe, -242px -76.66667px #ff0048, 67px -268.66667px #60f, 88px -234.66667px #00ff7b, -4px -90.66667px #f04, -86px -80.66667px #fffb00, -4px -2.66667px #00f7ff, -80px 41.33333px #00ffae, 124px -228.66667px #f04, 48px -78.66667px #e6ff00, 123px 39.33333px #ff006f, 98px -178.66667px #bf0, -75px -165.66667px #3f0, 62px -247.66667px #00ff2b, 10px -117.66667px #00ffd0, -182px -381.66667px #8c00ff, -47px -116.66667px #00f2ff, -34px -246.66667px #0fa, -120px -357.66667px #04f, 29px -224.66667px #fd0, 90px 42.33333px #0cf, -105px -201.66667px #08f, -146px -25.66667px #f08, 177px -141.66667px #b7ff00, -157px -276.66667px #a6ff00, -204px 16.33333px #ff0, 202px -241.66667px #005eff, -140px -45.66667px #0af, 68px -181.66667px #00ffae, 73px -222.66667px #00ff6a, -206px -357.66667px #ff00ea, -75px 71.33333px #0f9, -201px -24.66667px #ff0015, -76px -335.66667px #ff00ae, -46px -162.66667px #ff0040, -212px -66.66667px #fff200, 86px -253.66667px #e600ff, 228px -257.66667px #00ff1a, 6px -255.66667px #6a00ff, 112px -1.66667px #00ffa6, -87px 32.33333px #af0, 49px -380.66667px #9100ff, -34px -209.66667px #2f00ff, 26px 65.33333px #ff00ae, -98px -132.66667px #5f0;
+    }
+  }
+  @-o-keyframes bang {
+    to {
+      box-shadow: 236px -374.66667px #00ffbf, -76px 6.33333px #1f0, 118px -356.66667px #80f, -168px 55.33333px #8f0, -157px -248.66667px #0008ff, 161px -373.66667px #ff008c, 189px 42.33333px #0fe, -242px -76.66667px #ff0048, 67px -268.66667px #60f, 88px -234.66667px #00ff7b, -4px -90.66667px #f04, -86px -80.66667px #fffb00, -4px -2.66667px #00f7ff, -80px 41.33333px #00ffae, 124px -228.66667px #f04, 48px -78.66667px #e6ff00, 123px 39.33333px #ff006f, 98px -178.66667px #bf0, -75px -165.66667px #3f0, 62px -247.66667px #00ff2b, 10px -117.66667px #00ffd0, -182px -381.66667px #8c00ff, -47px -116.66667px #00f2ff, -34px -246.66667px #0fa, -120px -357.66667px #04f, 29px -224.66667px #fd0, 90px 42.33333px #0cf, -105px -201.66667px #08f, -146px -25.66667px #f08, 177px -141.66667px #b7ff00, -157px -276.66667px #a6ff00, -204px 16.33333px #ff0, 202px -241.66667px #005eff, -140px -45.66667px #0af, 68px -181.66667px #00ffae, 73px -222.66667px #00ff6a, -206px -357.66667px #ff00ea, -75px 71.33333px #0f9, -201px -24.66667px #ff0015, -76px -335.66667px #ff00ae, -46px -162.66667px #ff0040, -212px -66.66667px #fff200, 86px -253.66667px #e600ff, 228px -257.66667px #00ff1a, 6px -255.66667px #6a00ff, 112px -1.66667px #00ffa6, -87px 32.33333px #af0, 49px -380.66667px #9100ff, -34px -209.66667px #2f00ff, 26px 65.33333px #ff00ae, -98px -132.66667px #5f0;
+    }
+  }
+  @-ms-keyframes bang {
+    to {
+      box-shadow: 236px -374.66667px #00ffbf, -76px 6.33333px #1f0, 118px -356.66667px #80f, -168px 55.33333px #8f0, -157px -248.66667px #0008ff, 161px -373.66667px #ff008c, 189px 42.33333px #0fe, -242px -76.66667px #ff0048, 67px -268.66667px #60f, 88px -234.66667px #00ff7b, -4px -90.66667px #f04, -86px -80.66667px #fffb00, -4px -2.66667px #00f7ff, -80px 41.33333px #00ffae, 124px -228.66667px #f04, 48px -78.66667px #e6ff00, 123px 39.33333px #ff006f, 98px -178.66667px #bf0, -75px -165.66667px #3f0, 62px -247.66667px #00ff2b, 10px -117.66667px #00ffd0, -182px -381.66667px #8c00ff, -47px -116.66667px #00f2ff, -34px -246.66667px #0fa, -120px -357.66667px #04f, 29px -224.66667px #fd0, 90px 42.33333px #0cf, -105px -201.66667px #08f, -146px -25.66667px #f08, 177px -141.66667px #b7ff00, -157px -276.66667px #a6ff00, -204px 16.33333px #ff0, 202px -241.66667px #005eff, -140px -45.66667px #0af, 68px -181.66667px #00ffae, 73px -222.66667px #00ff6a, -206px -357.66667px #ff00ea, -75px 71.33333px #0f9, -201px -24.66667px #ff0015, -76px -335.66667px #ff00ae, -46px -162.66667px #ff0040, -212px -66.66667px #fff200, 86px -253.66667px #e600ff, 228px -257.66667px #00ff1a, 6px -255.66667px #6a00ff, 112px -1.66667px #00ffa6, -87px 32.33333px #af0, 49px -380.66667px #9100ff, -34px -209.66667px #2f00ff, 26px 65.33333px #ff00ae, -98px -132.66667px #5f0;
+    }
+  }
+  @keyframes bang {
+    to {
+      box-shadow: 236px -374.66667px #00ffbf, -76px 6.33333px #1f0, 118px -356.66667px #80f, -168px 55.33333px #8f0, -157px -248.66667px #0008ff, 161px -373.66667px #ff008c, 189px 42.33333px #0fe, -242px -76.66667px #ff0048, 67px -268.66667px #60f, 88px -234.66667px #00ff7b, -4px -90.66667px #f04, -86px -80.66667px #fffb00, -4px -2.66667px #00f7ff, -80px 41.33333px #00ffae, 124px -228.66667px #f04, 48px -78.66667px #e6ff00, 123px 39.33333px #ff006f, 98px -178.66667px #bf0, -75px -165.66667px #3f0, 62px -247.66667px #00ff2b, 10px -117.66667px #00ffd0, -182px -381.66667px #8c00ff, -47px -116.66667px #00f2ff, -34px -246.66667px #0fa, -120px -357.66667px #04f, 29px -224.66667px #fd0, 90px 42.33333px #0cf, -105px -201.66667px #08f, -146px -25.66667px #f08, 177px -141.66667px #b7ff00, -157px -276.66667px #a6ff00, -204px 16.33333px #ff0, 202px -241.66667px #005eff, -140px -45.66667px #0af, 68px -181.66667px #00ffae, 73px -222.66667px #00ff6a, -206px -357.66667px #ff00ea, -75px 71.33333px #0f9, -201px -24.66667px #ff0015, -76px -335.66667px #ff00ae, -46px -162.66667px #ff0040, -212px -66.66667px #fff200, 86px -253.66667px #e600ff, 228px -257.66667px #00ff1a, 6px -255.66667px #6a00ff, 112px -1.66667px #00ffa6, -87px 32.33333px #af0, 49px -380.66667px #9100ff, -34px -209.66667px #2f00ff, 26px 65.33333px #ff00ae, -98px -132.66667px #5f0;
+    }
+
+}
