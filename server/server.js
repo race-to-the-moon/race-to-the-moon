@@ -86,7 +86,7 @@ app.get('/auth/callback', ac.login);
 
 app.get('/auth/user', aM.envCheck, ac.userData);
 
-app.delete('/auth/user', ac.logout)
+app.get('/auth/logout', ac.logout)
 
 
 
