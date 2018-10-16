@@ -35,6 +35,10 @@ class UserCreation extends Component {
         }
     }
 
+    validateInputLength = (userInput) => {
+        userInput > 40 ? userInput.substring(0,39) : userInput;
+    }
+
     updateUsername(val) {
         let filled = val ? true : false;
 
@@ -45,6 +49,7 @@ class UserCreation extends Component {
             }
         })
     }
+
 
     submitUsername = () => {
         if (this.state.userInput) {

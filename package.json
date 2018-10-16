@@ -36,7 +36,19 @@
       "target": "http://localhost:3535"
     }
   },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "devDependencies": {
     "jest": "^23.6.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/race-to-the-moon/race-to-the-moon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/race-to-the-moon/race-to-the-moon/issues"
+  },
+  "homepage": "https://github.com/race-to-the-moon/race-to-the-moon#readme"
 }
