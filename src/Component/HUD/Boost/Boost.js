@@ -17,6 +17,8 @@ function Boost(props) {
             reduxValInObj('rocket', 'boost', true)
             reduxValInObj('rocket', 'hit', false)
             reduxValInObj('rocket', 'invincible', true)
+            reduxValInObj('rocket', 'totalTime', 'string')
+            reduxValInObj('rocket', 'timeRemaining')
             const updatingBoost = () => {
                 if (boostAmt === 0) {
                     reduxValInObj('rocket', 'boost', false)
