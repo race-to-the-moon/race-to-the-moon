@@ -37,7 +37,7 @@ class MainMenu extends Component {
     render() {
 
         const { user } = this.props;
-
+        console.log(process.env.REACT_APP_LOGOUT)
 
         return (
             <div>
@@ -51,11 +51,12 @@ class MainMenu extends Component {
                             <Link to='/single'><button>Single Player</button></Link>
                             <button>Versus</button>
                             <Link to='/leaderboard'><button>Leader Board</button></Link>
-                            <button>Logout</button>
+
+                            <a href='http://localhost:3535/auth/logout'><button>Logout</button></a>
                         </div>
                         <div className='option-buttons-container'>
-                        <Link to=""><img src={SoundIcon} alt='Sound-Icon.png'/></Link>
-                            <Link to=""><img className="setting-icon" src={SettingIcon} alt='setting.icon.png'/></Link>
+                            <Link to=""><img src={SoundIcon} alt='Sound-Icon.png' /></Link>
+                            <Link to=""><img className="setting-icon" src={SettingIcon} alt='setting.icon.png' /></Link>
                         </div>
                     </div>
                 ) : (

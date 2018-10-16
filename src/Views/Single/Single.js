@@ -187,7 +187,7 @@ class Single extends Component {
             let distance = Between(this.cannon.x, this.cannon.y, pointer.position.x, pointer.position.y)
 
             SetToAngle(line, this.cannon.x, this.cannon.y, angle, distance);
-            velocityFromRotation(angle, 1000, this.velocity);
+            velocityFromRotation(angle, 4000, this.velocity);
             gfx.clear().strokeLineShape(line);
         }, this);
 
