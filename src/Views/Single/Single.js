@@ -387,8 +387,8 @@ class Single extends Component {
                 this.bullet.disableBody(true, true)
 
                 //using the created this.game property to keep context of this to the class so we can update redux
-                reduxValInObj('rocket', 'boostAmt', 100)
-                reduxValInObj('score', 'astScore')
+                reduxValInObj('rocket', 'boostAmt', 'meteor')
+                reduxValInObj('score', 'astScore', 'meteor')
             })
         });
 
