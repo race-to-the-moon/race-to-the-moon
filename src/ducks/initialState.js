@@ -1,9 +1,9 @@
 module.exports = {   
     rocket: {
-        health: 0,
+        health: 100,
         hit: false,
-        totalTime: 90000,
-        timeRemaining: 90000,
+        totalTime: 10000,
+        timeRemaining: 10000,
         alive: true,
         boost: false,
         boostAmt: 100,
@@ -16,6 +16,7 @@ module.exports = {
         // }
     },
     gameOn: true,
+    startTime: false,
     // asteroid: [
     //     {
     //         // location: {},
