@@ -1,6 +1,6 @@
 module.exports = {   
     rocket: {
-        health: 100,
+        health: 0,
         hit: false,
         totalTime: 90000,
         timeRemaining: 90000,
@@ -15,7 +15,7 @@ module.exports = {
         //     thruster: ''
         // }
     },
-    gameOn: false,
+    gameOn: true,
     // asteroid: [
     //     {
     //         // location: {},

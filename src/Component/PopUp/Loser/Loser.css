@@ -1,0 +1,48 @@
+.loser-body{
+    background-image: linear-gradient(135deg, rgba(2,0,36,1) 9%, rgba(103,9,121,1) 39%, rgba(0,212,255,1) 81%);
+    width: 375px;
+    height: 667px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.insult{
+    text-align: center;
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    font-size: 35px;
+    text-shadow: 2px 2px 5px red;
+    position: relative;
+    top: 25px;
+}
+
+.loser-buttons{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 100px;
+}
+
+.loser-buttons button{
+    background-image: linear-gradient(135deg, rgba(2,0,36,1) 9%, rgba(103,9,121,1) 39%, rgba(0,212,255,1) 81%);
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    border: none;
+    margin: 10px;
+    height: 45px;
+    width: 150px;
+    font-size: 20px;
+    outline: none;
+    text-shadow: 2px 2px 5px red;
+}
+
+.loser-buttons button:hover{
+    background: rgb(0, 119, 255);
+}

@@ -16,7 +16,7 @@ export default class CountDown extends Component {
         setTimeout(() => { this.setState({ countDown: countDown - 1 }) }, 1000)
 
         return (
-            <div>
+            <div className='counter-container'>
                 <p className="counter">
                     {countDown ? countDown
                         :
