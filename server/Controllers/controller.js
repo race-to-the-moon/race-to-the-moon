@@ -4,15 +4,26 @@ module.exports = {
     },
     updateUsername: async (req, res) => {
         const { username } = req.body
-        const { user_id, icon } = req.session.user
+        if (req.session.user) {
+            var { user_id, icon } = req.session.user
+        } else {
+            var { user_id, icon } = req.body
+        }
 
-        let updatedUser = res.get('db').update_username([username, icon, user_id])
+        let updatedUser = await req.app.get('db').update_username([username, icon, user_id])
 
-        req.session.user = updatedUser
+        req.session.user = updatedUser[0]
         res.status(200).send(req.session.user)
     },
-    deleteUser: (req, res) => {
-        res.status(200).send('what the f*** why are you deleting?')
+    deleteUser: async (req, res) => {
+        if (req.session.user) {
+            var { user_id } = req.session.user
+        } else {
+            var { user_id } = req.query;
+        }
+        // let answer = await req.app.get('db').delete_user([user_id])
+
+        res.status(200).send({words:'what the f*** why are you deleting?'})
     },
     getScores: (req, res) => {
         const db = req.app.get('db')
@@ -27,11 +38,15 @@ module.exports = {
     },
     addScore: (req, res) => {
         const { totalTime, astScore } = req.body
-        const { user_id } = req.session.user
+        if (req.session.user) {
+            var { user_id } = req.session.user;
+        } else {
+            var { user_id } = req.query;
+        }
         console.log(totalTime, astScore, user_id)
         req.app.get('db').add_score([totalTime, astScore, user_id])
             .then(response => {
-                res.status(200).send(response)
+                res.status(200).send(response[0])
             }).catch(error => {
                 console.log(error)
             })
