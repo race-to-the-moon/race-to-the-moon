@@ -7,7 +7,7 @@ import SettingIcon from '../../srcAssets/settings.icon.png';
 import SoundIcon from '../../srcAssets/Sound-Icon.png';
 
 // Action Creators //
-import { updateTopLvlObj } from '../../ducks/reducer'
+import { updateTopLvlObj, resetRedux } from '../../ducks/reducer';
 
 class MainMenu extends Component {
     constructor() {
@@ -32,6 +32,7 @@ class MainMenu extends Component {
                     console.log(err)
                 })
         }
+        this.props.resetRedux()
     }
 
     render() {
@@ -76,7 +77,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    updateTopLvlObj
+    updateTopLvlObj,
+    resetRedux
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainMenu);

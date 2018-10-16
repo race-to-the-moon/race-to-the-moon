@@ -77,6 +77,15 @@ export default (state = initialState, action) => {
             newState[topLvl][i][nestedObj][what] = val
             return newState
 
+        case RESET_REDUX:
+            const {rocket, score, gameOnNew, startTime} = payload;
+
+            newState.rocket = rocket;
+            newState.score = score;
+            newState.gameOn = gameOnNew;
+            newState.startTime = startTime;
+            return newState;
+
         default:
             return state;
     }
@@ -88,6 +97,7 @@ const UPDATE_VAL_IN_OBJ = 'UPDATE_VAL_IN_OBJ';
 const UPDATE_NESTED_OBJ = 'UPDATE_NESTED_OBJ';
 const UPDATE_OBJ_IN_ARR = 'UPDATE_OBJ_IN_ARR';
 const UPDATE_NESTED_OBJ_IN_ARR = 'UPDATE_NESTED_OBJ_IN_ARR';
+const RESET_REDUX = 'RESET_REDUX';
 
 
 // // ACTION CREATORS // //
@@ -123,5 +133,17 @@ export const updateNestedObjInArr = (instructions) => {
     return {
         type: UPDATE_NESTED_OBJ_IN_ARR,
         payload: instructions
+    }
+}
+
+export const resetRedux = () => {
+    return {
+        type: RESET_REDUX,
+        payload: {
+            rocket: initialState.rocket,
+            score: initialState.score,
+            gameOnNew: initialState.gameOn,
+            startTime: initialState.startTime
+        }
     }
 }

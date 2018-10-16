@@ -3,6 +3,7 @@ import './Winner.css';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { updateValInObj } from '../../../ducks/reducer';
+import axios from 'axios';
 
 
 
@@ -14,11 +15,17 @@ class Winner extends Component {
     }
 
     componentDidMount() {
-        const { rocket: {timeRemaining, totalTime}, updateValInObj} = this.props
+        const { rocket: { timeRemaining, totalTime }, updateValInObj, score: { astScore } } = this.props
         if (timeRemaining === 0) {
             const finalScore = (1 - (totalTime / 90000) * 25000)
-            updateValInObj({topLvl: 'score', what: 'timeScore', val: finalScore})
+            updateValInObj({ topLvl: 'score', what: 'timeScore', val: finalScore })
         }
+        axios.post('/api/scores', { totalTime, astScore })
+            .then(res => {
+                console.log(res)
+            }).catch(error => {
+                console.log(error)
+            })
     }
 
     render() {
