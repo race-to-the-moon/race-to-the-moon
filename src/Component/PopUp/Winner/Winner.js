@@ -14,10 +14,14 @@ class Winner extends Component {
 
     }
 
+    timeScoreAlg = (finalTime) => {
+        const finalScore = (1 - (finalTime / 90000) * 25000)
+    }
+
     componentDidMount() {
         const { rocket: { timeRemaining, totalTime }, updateValInObj, score: { astScore } } = this.props
         if (timeRemaining === 0) {
-            const finalScore = (1 - (totalTime / 90000) * 25000)
+            const finalScore = this.timeScoreAlg(totalTime)
             updateValInObj({ topLvl: 'score', what: 'timeScore', val: finalScore })
         }
         axios.post('/api/scores', { totalTime, astScore })
