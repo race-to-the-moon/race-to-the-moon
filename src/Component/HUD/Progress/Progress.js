@@ -52,6 +52,7 @@ class ProgressBar extends Component {
             <div>
                 <div className="progress-bar">
                     <div className="moon-div">
+                    <img className="moon-icon" src={Moon}/>
                     </div>
                     <div className="rocket-div"
                         style={{ height: height + "%" }}
