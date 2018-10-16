@@ -51,11 +51,11 @@ export default (state = initialState, action) => {
             } else if (what === 'health') {
                 val = health
             } else if (what === 'astScore') {
-                val = astScore + 10
+                val = (val==='meteor' ? astScore + 1000 : astScore + 100)
             } else if (what === 'boostAmt' && boost === true) {
                 val = boostAmt - (boostAmt > 0 ? .25 : 0)
             } else if (what === 'boostAmt' && val !== 0) {
-                val = boostAmt + (boostAmt < 100 ? 5 : 0)
+                val = (val==='meteor' ? 100 : boostAmt + (boostAmt < 100 ? 5 : 0))
             }
 
             newState[topLvl][what] = val
