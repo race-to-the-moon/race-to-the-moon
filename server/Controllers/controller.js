@@ -3,8 +3,8 @@ module.exports = {
         res.status(200).send('this is user data')
     },
     updateUsername: async (req, res) => {
-        const {username} = req.body
-        const {user_id, icon} = req.session.user
+        const { username } = req.body
+        const { user_id, icon } = req.session.user
 
         let updatedUser = res.get('db').update_username([username, icon, user_id])
 
@@ -18,15 +18,23 @@ module.exports = {
         const db = req.app.get('db')
 
         db.get_scores()
-        .then(scores => {
-            res.status(200).send(scores)
-        }).catch(err => {
-            res.status(500).send({errorMessage: "Oops! Slomething went wrong, could not get scores. Better luck next time!"})
-            console.log(err)
-        })
+            .then(scores => {
+                res.status(200).send(scores)
+            }).catch(err => {
+                res.status(500).send({ errorMessage: "Oops! Slomething went wrong, could not get scores. Better luck next time!" })
+                console.log(err)
+            })
     },
     addScore: (req, res) => {
-        res.status(200).send(`so, you didn't lose...`)
+        const { totalTime, astScore } = req.body
+        const { user_id } = req.session.user
+        console.log(totalTime, astScore, user_id)
+        req.app.get('db').add_score([totalTime, astScore, user_id])
+            .then(response => {
+                res.status(200).send(response)
+            }).catch(error => {
+                console.log(error)
+            })
     },
     updateScore: (req, res) => {
         res.status(200).send('are we really changing this?')
