@@ -23,19 +23,19 @@ function ProgressBar(props) {
     // TIME FUNCTION
 
     function move() {
-        var id = setInterval(frame, 500);
+            var id = setInterval(frame, 500);
 
 
-        function frame() {
-            if (!timeRemaining) {
-                console.log('we are in frame if statement', height)
-
-                clearInterval(id);
-                updateTopLvlObj({ what: 'gameOn', val: false })
-            } else {
-                updateValInObj({ topLvl: 'rocket', what: 'timeRemaining', val: 'countDown' })
+            function frame() {
+                if (!timeRemaining) {
+                    console.log('we are in frame if statement', height)
+    
+                    clearInterval(id);
+                    updateTopLvlObj({ what: 'gameOn', val: false })
+                } else {
+                    updateValInObj({ topLvl: 'rocket', what: 'timeRemaining', val: 'countDown' })
+                }
             }
-        }
     }
     if (gameOn && timeRemaining === totalTime) {
         move()

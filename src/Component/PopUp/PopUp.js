@@ -25,6 +25,7 @@ class PopUp extends Component {
     }
 }
 
+
 const mapStateToProps = ({ rocket }) => {
     return {
         rocket

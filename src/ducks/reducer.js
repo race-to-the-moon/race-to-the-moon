@@ -23,35 +23,40 @@ export default (state = initialState, action) => {
 
         case UPDATE_VAL_IN_OBJ:
 
-            const { 
-                rocket: { 
-                    totalTime, 
-                    health, 
-                    boostAmt, 
-                    boost, 
+            const {
+                rocket: {
+                    totalTime,
+                    health,
+                    boostAmt,
+                    boost,
                     invincible,
                     timeRemaining,
                     hit
-                }, 
-                score: { astScore } 
+                },
+                gameOn,
+                score: { astScore }
             } = newState;
 
-            if (what === 'totalTime') {
-                val = totalTime + (!boost ? 3000 : 0)
-            } else if (what === 'timeRemaining'&& timeRemaining) {
-                val = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : (!boost ? 300 : 0))
-            } else if (what === 'timeRemaining'){
+            if (what === 'totalTime' && val != 'string') {
+                val = totalTime + (!invincible ? 3000 : 0)
+            } else if (what === 'totalTime' && boost) {
+                val = totalTime - 5000
+            } else if (what === 'timeRemaining' && timeRemaining) {
+                let boostTimeRemaining = timeRemaining - 5000
+                let countingDown = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : (!boost ? 300 : 0))
+                val = boost ? boostTimeRemaining : countingDown
+            } else if (what === 'timeRemaining') {
                 val = 0
             } else if (what === 'health' && health > 0 && !invincible && !boost && !hit) {
                 val = health - 10
-            } else if(what === 'health') {
+            } else if (what === 'health') {
                 val = health
             } else if (what === 'astScore') {
-                val = astScore + 10
-            }else if (what === 'boostAmt' && boost === true) {
+                val = (val==='meteor' ? astScore + 1000 : astScore + 100)
+            } else if (what === 'boostAmt' && boost === true) {
                 val = boostAmt - (boostAmt > 0 ? .25 : 0)
             } else if (what === 'boostAmt' && val !== 0) {
-                val = boostAmt + (boostAmt < 100 ? 5 : 0)
+                val = (val==='meteor' ? 100 : boostAmt + (boostAmt < 100 ? 5 : 0))
             }
 
             newState[topLvl][what] = val

@@ -187,7 +187,7 @@ class Single extends Component {
             let distance = Between(this.cannon.x, this.cannon.y, pointer.position.x, pointer.position.y)
 
             SetToAngle(line, this.cannon.x, this.cannon.y, angle, distance);
-            velocityFromRotation(angle, 1000, this.velocity);
+            velocityFromRotation(angle, 4000, this.velocity);
             gfx.clear().strokeLineShape(line);
         }, this);
 
@@ -387,8 +387,8 @@ class Single extends Component {
                 this.bullet.disableBody(true, true)
 
                 //using the created this.game property to keep context of this to the class so we can update redux
-                reduxValInObj('rocket', 'boostAmt', 100)
-                reduxValInObj('score', 'astScore')
+                reduxValInObj('rocket', 'boostAmt', 'meteor')
+                reduxValInObj('score', 'astScore', 'meteor')
             })
         });
 
