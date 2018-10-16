@@ -130,7 +130,8 @@ class Single extends Component {
                 updateTopLvlObj({ what, val })
             }
 
-            reduxTopLvlObj('gameOn', true)
+            // reduxTopLvlObj('gameOn', true)
+            reduxTopLvlObj('startTime', true)
 
             this.setState({ timerOn: false })
 
@@ -194,7 +195,6 @@ class Single extends Component {
         this.cursors = this.input.keyboard.createCursorKeys()
 
         this.input.on('pointerup', () => {
-            console.log('clicked')
             this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(this.velocity.x, this.velocity.y);
         })
 
@@ -261,7 +261,6 @@ class Single extends Component {
         const { stateHealth } = this.game.compContext.state;
 
         if (this.cursors.space.isDown) {
-            console.log('clicked')
             this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(this.velocity.x, this.velocity.y);
         }
 
@@ -394,6 +393,7 @@ class Single extends Component {
 
         if (!health || !timeRemaining) {
             updateTopLvlObj({ what: 'gameOn', val: false })
+            updateTopLvlObj({what: 'startTime', val: false})
         }
 
         if (!gameOn) {
@@ -403,7 +403,7 @@ class Single extends Component {
 
     render() {
         const { user_id } = this.props.user
-        const { gameOn } = this.props
+        const { gameOn, startTime } = this.props
         return (
             <div className="single-container">
                 {user_id ? (
@@ -412,7 +412,7 @@ class Single extends Component {
                         <div id='render-game' />
                         <div className='hud-div'>
                             <Score />
-                            <ProgressBar />
+                            <ProgressBar stopMe={startTime} />
                             <HealthBar />
                             <Boost />
                         </div>
@@ -430,13 +430,14 @@ class Single extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { user, score, rocket, gameOn } = state;
+    const { user, score, rocket, gameOn, startTime } = state;
 
     return {
         user,
         score,
         rocket,
-        gameOn
+        gameOn,
+        startTime,
     }
 }
 
