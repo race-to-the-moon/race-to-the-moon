@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './comingsoon.css';
+import { Link } from 'react-router-dom';
 
-class ComingSoon extends React.Component {
+class ComingSoon extends Component {
     constructor() {
         super();
     }
 
     render() {
         return (
-            <div>
-                <h1>Coming Soon</h1>
+            <div className="div-around-comingsoon">
+                <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
+                <h1 className="comingsoon-text">Coming Soon</h1>
+                <Link to="/mainmenu"><button className="back-to-mainmenu">Back to Main Menu</button></Link>
             </div>
         )
     }
