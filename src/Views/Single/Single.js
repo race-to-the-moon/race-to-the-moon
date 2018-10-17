@@ -10,6 +10,7 @@ import HealthBar from '../../Component/HUD/HB/HealthBar';
 import './Single.css';
 import CountDown from '../../Component/CountDown/CountDown';
 import PopUp from '../../Component/PopUp/PopUp';
+import Thruster from '../../Component/Rocket/Thrusters/Thrusters';
 
 
 // Action Creators //
@@ -110,7 +111,7 @@ class Single extends Component {
             physics: {
                 default: 'arcade',
                 arcade: {
-                    debug: false    
+                    debug: false
                 }
             },
             scene: {
@@ -393,7 +394,7 @@ class Single extends Component {
 
         if (!health || !timeRemaining) {
             updateTopLvlObj({ what: 'gameOn', val: false })
-            updateTopLvlObj({what: 'startTime', val: false})
+            updateTopLvlObj({ what: 'startTime', val: false })
         }
 
         if (!gameOn) {
@@ -415,6 +416,7 @@ class Single extends Component {
                             <ProgressBar stopMe={startTime} />
                             <HealthBar />
                             <Boost />
+                            <Thruster />
                         </div>
                         {this.state.timerOn ? <CountDown />
                             : null}
