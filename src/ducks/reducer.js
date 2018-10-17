@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
             return newState
 
         case UPDATE_VAL_IN_OBJ:
-
+            // // // //
             const {
                 rocket: {
                     totalTime,
@@ -37,16 +37,28 @@ export default (state = initialState, action) => {
                 score: { astScore }
             } = newState;
 
+
+            
+            // // // // Loaded If Statement // // // //
+
             if (what === 'totalTime' && val != 'string') {
+
                 val = totalTime + (!invincible ? 3000 : 0)
+
             } else if (what === 'totalTime' && boost) {
+
                 val = totalTime - 5000
+
             } else if (what === 'timeRemaining' && timeRemaining) {
+
                 let boostTimeRemaining = timeRemaining - 5000
                 let countingDown = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : (!boost ? 300 : 0))
-                val = boost ? boostTimeRemaining : countingDown
+                val = val === 'boost' ? boostTimeRemaining : countingDown
+
             } else if (what === 'timeRemaining') {
+
                 val = 0
+
             } else if (what === 'health' && health > 0 && !invincible && !boost && !hit) {
                 val = health - 10
             } else if (what === 'health') {
