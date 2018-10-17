@@ -24,3 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+
+.env.prod
+
+RTTM-dev-team-tests.postman_collection.json
