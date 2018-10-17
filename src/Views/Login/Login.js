@@ -20,7 +20,7 @@ export default function Login() {
             <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
             <div className="box-effects">
                 <h2 className="welcome-to">Welcome to</h2>
-                <h1 className="rttm">Race to the moon!</h1>
+                <h1 className="rttm">Race to the Moon!</h1>
                 <button className="login-button" onClick={login}>Please Login</button>
             </div>
             <div className="login-moon-div">

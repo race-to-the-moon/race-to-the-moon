@@ -362,9 +362,9 @@ console.log(this)
                 reduxValInObj('rocket', 'health')
                 reduxValInObj('rocket', 'hit', true)
                 reduxValInObj('rocket', 'invincible', true)
-                if(!this.stateInvincible){
+                // if(!this.stateInvincible){
                     this.sound.play('rocketHit')
-                }
+                // }
                 // if(!hit){
                 setTimeout(() => {
                     this.stateInvincible = false;
