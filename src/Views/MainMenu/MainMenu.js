@@ -6,6 +6,7 @@ import axios from 'axios';
 import SettingIcon from '../../srcAssets/settings.icon.png';
 import SoundIcon from '../../srcAssets/Sound-Icon.png';
 import themeSong from './../../srcAssets/sound/soundtrack/race-to-the-moon-theme.mp3'
+import vo from './../../srcAssets/sound/vo/menu-vo.mp3'
 import ReactAudioPlayer from 'react-audio-player'
 
 // Action Creators //
@@ -43,7 +44,8 @@ class MainMenu extends Component {
 
         return (
             <div>
-                <ReactAudioPlayer src={themeSong} autoPlay loop/>
+                <ReactAudioPlayer volume={0.30} src={themeSong} autoPlay loop/>
+                <ReactAudioPlayer volume={1.0} src={vo} autoPlay/>
                 <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
                 {user.user_id ? (
                     <div className='mainMenu-body'>

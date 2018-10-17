@@ -9,8 +9,6 @@ export default class CountDown extends Component {
             countDown: 3
         }
     }
-
-
     render() {
         const {countDown} = this.state
         setTimeout(() => { this.setState({ countDown: countDown - 1 }) }, 1000)

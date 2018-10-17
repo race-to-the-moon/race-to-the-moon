@@ -12,6 +12,9 @@ import CountDown from '../../Component/CountDown/CountDown';
 import PopUp from '../../Component/PopUp/PopUp';
 import Thruster from '../../Component/Rocket/Thrusters/Thrusters';
 
+import ReactAudioPlayer from 'react-audio-player';
+import vo from './../../srcAssets/sound/vo/single-vo.mp3'
+
 
 // Action Creators //
 import { updateTopLvlObj, updateValInObj } from '../../ducks/reducer';
@@ -54,7 +57,7 @@ class Single extends Component {
 
         this.state = {
             stateHealth: 100,
-            timerOn: true
+            timerOn: false
         }
 
         this.testMethod = this.testMethod.bind(this)
@@ -76,6 +79,7 @@ class Single extends Component {
     bgSpeed
     cursors
     velocity
+    stateInvincible
 
     testMethod(reduxMethodName, data) {
         this.props[reduxMethodName](data)
@@ -122,21 +126,27 @@ class Single extends Component {
             self: this.self,
 
         }
+
+
+
         setTimeout(() => {
-            this.game = new Phaser.Game(renderOptions)
-            this.game.compContext = this;
-            const { updateTopLvlObj } = this.game.compContext.props;
-
-            let reduxTopLvlObj = (what, val = 'nothing') => {
-                updateTopLvlObj({ what, val })
-            }
-
-            // reduxTopLvlObj('gameOn', true)
-            reduxTopLvlObj('startTime', true)
-
-            this.setState({ timerOn: false })
-
-        }, 4000)
+            this.setState({timerOn: true})
+            setTimeout(() => {
+                this.game = new Phaser.Game(renderOptions)
+                this.game.compContext = this;
+                const { updateTopLvlObj } = this.game.compContext.props;
+    
+                let reduxTopLvlObj = (what, val = 'nothing') => {
+                    updateTopLvlObj({ what, val })
+                }
+    
+                // reduxTopLvlObj('gameOn', true)
+                reduxTopLvlObj('startTime', true)
+    
+                this.setState({ timerOn: false })
+    
+            }, 4000)
+        }, 2500)
 
         //adding compContext property on game to save class context from 'this'
         //this allows you to update outside components or in our case redux within a scene which changes 'this' context to the scene itself
@@ -150,10 +160,20 @@ class Single extends Component {
         this.load.image('meteorite', 'assets/meteorite.png')
         this.load.image('cannon', 'assets/cannon.png')
         this.load.image('bullet', 'assets/bullet.png')
+
+        this.load.audio('gunSfx', 'assets/gun-sfx.mp3')
+        this.load.audio('asteroidHit', 'assets/asteroid-hit-sfx.mp3')
+        this.load.audio('rocketHit', 'assets/rocket-hit-sfx.mp3')
+        this.load.audio('boostSfx', 'assets/boost-sfx.mp3')
         // console.log('inside phaser func', this)
+
+        console.log(this.load)
     }
 
     create() {
+console.log(this)
+
+        this.stateInvincible = false;
 
         this.bg = this.add.tileSprite(0, 0, this.game.config.width * 2, this.game.config.height * 2, 'background');
 
@@ -199,7 +219,7 @@ class Single extends Component {
             this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(this.velocity.x, this.velocity.y);
         })
 
-        console.log('input', this.input)
+        // console.log('input', this.input)
 
         this.asteroidGroup = this.physics.add.group({
             defaultKey: 'asteroid',
@@ -240,14 +260,15 @@ class Single extends Component {
         });
 
         // console.log(this)
-        console.log('physics', this.physics)
+        // console.log('physics', this.physics)
         // console.log('meteorite', this.meteorite)
-        console.log('rocket', this.rocket)
-        console.log(this.game)
-        console.log('asteroid group', this.asteroidGroup)
+        // console.log('rocket', this.rocket)
+        // console.log(this.game)
+        // console.log('asteroid group', this.asteroidGroup)
         // console.log('entries', this.asteroidGroup.children.entries)
         // console.log('deep physics', this.asteroidGroup)
         // console.log('bullet', this.bullet)
+        console.log('cursors', this.cursors)
 
     }
 
@@ -262,8 +283,12 @@ class Single extends Component {
         const { stateHealth } = this.game.compContext.state;
 
         if (this.cursors.space.isDown) {
+            this.sound.play('gunSfx')
             this.bullet.enableBody(true, this.cannon.x, this.cannon.y, false, true).setVelocity(this.velocity.x, this.velocity.y);
+            this.cursors.space.reset()
         }
+
+        // console.log('sound', this.sound)
 
         if (hit) {
             this.bgSpeed = 1
@@ -333,11 +358,16 @@ class Single extends Component {
                     reduxValInObj('rocket', 'alive', false)
                 }
 
+                this.stateInvincible = true;
                 reduxValInObj('rocket', 'health')
                 reduxValInObj('rocket', 'hit', true)
                 reduxValInObj('rocket', 'invincible', true)
+                if(!this.stateInvincible){
+                    this.sound.play('rocketHit')
+                }
                 // if(!hit){
                 setTimeout(() => {
+                    this.stateInvincible = false;
                     reduxValInObj('rocket', 'hit', false)
                     reduxValInObj('rocket', 'invincible', false)
                 }, 3000)
@@ -350,6 +380,8 @@ class Single extends Component {
             this.physics.add.overlap(asteroid, this.bullet, () => {
                 this.asteroidGroup.remove(asteroid, true, true)
                 this.bullet.disableBody(true, true)
+
+                this.sound.play('asteroidHit')
 
                 //using the created this.game property to keep context of this to the class so we can update redux
                 reduxValInObj('rocket', 'boostAmt')
@@ -406,10 +438,12 @@ class Single extends Component {
         const { user_id } = this.props.user
         const { gameOn, startTime } = this.props
         return (
+            
             <div className="single-container">
                 {user_id ? (
-
+                    
                     <div className="game-div">
+                    <ReactAudioPlayer volume={1.0} src={vo} autoPlay/>
                         <div id='render-game' />
                         <div className='hud-div'>
                             <Score />
