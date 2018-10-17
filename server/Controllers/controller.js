@@ -43,7 +43,6 @@ module.exports = {
         } else {
             var { user_id } = req.query;
         }
-        console.log(totalTime, astScore, user_id)
         req.app.get('db').add_score([totalTime, astScore, user_id])
             .then(response => {
                 res.status(200).send(response[0])
