@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import SettingIcon from '../../srcAssets/settings.icon.png';
 import SoundIcon from '../../srcAssets/Sound-Icon.png';
+import themeSong from './../../srcAssets/sound/soundtrack/race-to-the-moon-theme.mp3'
+import ReactAudioPlayer from 'react-audio-player'
 
 // Action Creators //
 import { updateTopLvlObj, resetRedux } from '../../ducks/reducer';
@@ -42,6 +44,7 @@ class MainMenu extends Component {
 
         return (
             <div>
+                <ReactAudioPlayer src={themeSong} autoPlay loop/>
                 <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
                 {user.user_id ? (
                     <div className='mainMenu-body'>
