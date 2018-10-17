@@ -1,6 +1,8 @@
 import React from 'react';
 import './Login.css';
 import Moon from '../../srcAssets/Login_moon.png'
+import ReactAudioPlayer from 'react-audio-player'
+import vo from './../../srcAssets/sound/vo/login-vo.mp3'
 export default function Login() {
 
     let login = () => {
@@ -14,10 +16,11 @@ export default function Login() {
 
     return (
         <div className="whole-login">
+        <ReactAudioPlayer volume={1.0} src={vo} autoPlay/>
             <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
             <div className="box-effects">
                 <h2 className="welcome-to">Welcome to</h2>
-                <h1 className="rttm">Race to the moon!</h1>
+                <h1 className="rttm">Race to the Moon!</h1>
                 <button className="login-button" onClick={login}>Please Login</button>
             </div>
             <div className="login-moon-div">
