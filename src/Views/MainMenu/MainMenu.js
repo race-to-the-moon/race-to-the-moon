@@ -38,7 +38,6 @@ class MainMenu extends Component {
     render() {
 
         const { user } = this.props;
-        console.log(process.env.REACT_APP_LOGOUT)
 
         return (
             <div>
@@ -48,21 +47,24 @@ class MainMenu extends Component {
 
                         <h1 id='main-title'>Race To The Moon</h1>
                         <div className='main-buttons-container'>
-                            <button>Customize Ship</button>
+                            <Link to='/comingsoon'><button>Customize Ship</button></Link>
                             <Link to='/single'><button>Single Player</button></Link>
-                            <button>Versus</button>
+                            <Link to='/comingsoon'><button>Versus</button></Link>
                             <Link to='/leaderboard'><button>Leader Board</button></Link>
 
                             <a href='http://localhost:3535/auth/logout'><button>Logout</button></a>
                         </div>
                         <div className='option-buttons-container'>
-                            <Link to=""><img src={SoundIcon} alt='Sound-Icon.png' /></Link>
+                            <Link to=""><img className="sound-icon" src={SoundIcon} alt='Sound-Icon.png' /></Link>
                             <Link to=""><img className="setting-icon" src={SettingIcon} alt='setting.icon.png' /></Link>
                         </div>
                     </div>
                 ) : (
-                        <h1>Please Login</h1>
+                    <h1>Please Login</h1>
                     )}
+        <div className="stars"></div>
+        <div className="stars2"></div>
+        <div className="stars3"></div>
             </div>
         )
     }
