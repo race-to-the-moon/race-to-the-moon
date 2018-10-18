@@ -159,7 +159,7 @@ class Single extends Component {
         this.load.image('asteroid', 'assets/asteroid.png');
         this.load.image('meteorite', 'assets/meteorite.png')
         this.load.image('cannon', 'assets/cannon.png')
-        this.load.image('bullet', 'assets/bullet.png')
+        this.load.image('bullet', 'assets/purple-bullet.jpg')
 
         this.load.audio('gunSfx', 'assets/gun-sfx.mp3')
         this.load.audio('asteroidHit', 'assets/asteroid-hit-sfx.mp3')
