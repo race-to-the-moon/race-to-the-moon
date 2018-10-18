@@ -450,12 +450,12 @@ console.log(this)
                             <ProgressBar stopMe={startTime} />
                             <HealthBar />
                             <Boost />
-                            {/* <Thruster /> */}
-                        </div>
+                            <Thruster />
                         {this.state.timerOn ? <CountDown />
                             : null}
                         {!gameOn ? <PopUp />
                             : null}
+                        </div>
                     </div>
                 ) : (
                         <h1>Please Login</h1>

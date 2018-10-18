@@ -57,7 +57,7 @@ class MainMenu extends Component {
                             <Link to='/comingsoon'><button>Versus</button></Link>
                             <Link to='/leaderboard'><button>Leader Board</button></Link>
 
-                            <a href='http://localhost:3535/auth/logout'><button>Logout</button></a>
+                            <a href={`${process.env.REACT_APP_LOGOUT}`}><button>Logout</button></a>
                         </div>
                         <div className='option-buttons-container'>
                             <Link to=""><img className="sound-icon" src={SoundIcon} alt='Sound-Icon.png' /></Link>
