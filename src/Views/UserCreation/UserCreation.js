@@ -81,7 +81,7 @@ class UserCreation extends Component {
                 <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
                 {user_id ? (
                     <div className="whole-creation-div">
-                        <div className="div=around-htags">
+                        <div className="div-around-htags">
                             <h1 className="user-creation">User Creation</h1>
                             <h3 className="add-username">Please add a Username</h3>
                         </div>

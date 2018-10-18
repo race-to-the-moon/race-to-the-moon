@@ -9,6 +9,7 @@
     position: absolute;
     top: 452px;
     left: 155px;
+    z-index: 2;
 }
 
 .health-meter-container{

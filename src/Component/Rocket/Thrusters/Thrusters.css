@@ -1,8 +1,10 @@
 .thruster-body{
-    background:black;
+    background: none;
     transform:rotate(180deg);
     position: absolute;
-    z-index: 10;
+    z-index: 9;
+    top: 490px;
+    left: 158px;
 }
 
 .thruster-container{
@@ -64,7 +66,8 @@
   
   .circle{
     border-radius: 50%;
-    position:absolute;  
+    position: absolute;
+    top: 60px;
   }
   
   .blue{
@@ -76,14 +79,14 @@
     box-shadow: 0px 0px 15px 10px SlateBlue;
   }
   
-  .black{
+  /* .black{
     width: 40px;
     height: 40px;
     left:10px;
     bottom:-60px;  
     background: black;
     box-shadow: 0px 0px 15px 10px black;
-  }
+  } */
   
   @keyframes flicker{
     0%   {transform: rotate(-1deg);}
