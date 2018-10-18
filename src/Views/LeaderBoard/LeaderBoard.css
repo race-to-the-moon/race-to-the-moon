@@ -1,17 +1,42 @@
 .leaderBoard-body{
+    background-image: linear-gradient(35deg, rgb(29, 9, 9) 9%, rgb(38, 7, 44) 59%, rgb(13, 2, 34) 95%);
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     border: 1px solid rgb(24, 24, 24);
 }
 
+.leader-title{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    font-size: 35px;
+    text-shadow: 2px 2px 5px red;
+}
+
 .leaderList-body{
+    background-image: linear-gradient(35deg, rgb(29, 9, 9) 9%, rgb(38, 7, 44) 59%, rgb(13, 2, 34) 95%);
     width: 100%;
     height: 80vh;
-    background: black;
     margin: 0 auto;
     overflow-y: scroll;
+}
+
+.leaderBoard-body button {
+    background-image: linear-gradient(135deg, rgba(2,0,36,1) 9%, rgba(103,9,121,1) 39%, rgba(0,212,255,1) 81%);
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    border: none;
+    height: 40px;
+    width: 200px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.leaderBoard-body button:hover {
+    background-image: linear-gradient(135deg, rgb(57, 169, 235) 9%, rgb(84, 67, 236) 39%, rgb(0, 59, 207) 81%);
 }

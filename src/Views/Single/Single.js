@@ -451,11 +451,11 @@ console.log(this)
                             <HealthBar />
                             <Boost />
                             <Thruster />
-                        </div>
                         {this.state.timerOn ? <CountDown />
                             : null}
                         {!gameOn ? <PopUp />
                             : null}
+                        </div>
                     </div>
                 ) : (
                         <h1>Please Login</h1>
