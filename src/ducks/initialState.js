@@ -1,6 +1,6 @@
 module.exports = {   
     rocket: {
-        health: 1000000,
+        health: 100,
         hit: false,
         totalTime: 90000,
         timeRemaining: 90000,

@@ -195,7 +195,7 @@ console.log(this)
         let BetweenPoints = Phaser.Math.Angle.BetweenPoints;
         let SetToAngle = Phaser.Geom.Line.SetToAngle;
         this.velocity = new Phaser.Math.Vector2();
-        let line = new Phaser.Geom.Line();
+        // let line = new Phaser.Geom.Line();
         let velocityFromRotation = this.physics.velocityFromRotation;
         let gfx = this.add.graphics().setDefaultStyles({ lineStyle: { width: 10, color: 0xffdd00, alpha: 0.5 } });
 
@@ -208,9 +208,9 @@ console.log(this)
 
             let distance = Between(this.cannon.x, this.cannon.y, pointer.position.x, pointer.position.y)
 
-            SetToAngle(line, this.cannon.x, this.cannon.y, angle, distance);
+            // SetToAngle(line, this.cannon.x, this.cannon.y, angle, distance);
             velocityFromRotation(angle, 4000, this.velocity);
-            gfx.clear().strokeLineShape(line);
+            // gfx.clear().strokeLineShape(line);
         }, this);
 
         this.cursors = this.input.keyboard.createCursorKeys()
@@ -299,14 +299,11 @@ console.log(this)
         }
 
         this.bg.tilePositionY -= this.bgSpeed
-        // 
-        let reduxValInObj = (topLvl, what, val = 'nothing') => {
-            // if(what==='health'){
-            //     this.game.compContext.setState({stateHealth: stateHealth-10})
-            //     console.log(stateHealth);
 
-            //     val = stateHealth -10
-            // }
+
+        // // // This function invokes the action creator updateValInObj // // //
+        let reduxValInObj = (topLvl, what, val = 'nothing') => {
+            
             updateValInObj({ topLvl, what, val })
         }
 
@@ -353,7 +350,6 @@ console.log(this)
                 this.asteroidGroup.remove(asteroid, true, true)
 
                 // REDUX Section
-                // let healthUpdate = health - 10
                 if (!health) {
                     reduxValInObj('rocket', 'alive', false)
                 }
@@ -361,21 +357,19 @@ console.log(this)
                 this.stateInvincible = true;
                 reduxValInObj('rocket', 'health')
                 reduxValInObj('rocket', 'hit', true)
+                reduxValInObj('rocket', 'totalTime')
+                reduxValInObj('rocket', 'timeRemaining')
                 reduxValInObj('rocket', 'invincible', true)
-                // if(!this.stateInvincible){
                     this.sound.play('rocketHit')
-                // }
-                // if(!hit){
+
+
                 setTimeout(() => {
                     this.stateInvincible = false;
                     reduxValInObj('rocket', 'hit', false)
                     reduxValInObj('rocket', 'invincible', false)
                 }, 3000)
-                // }
-                // reduxValInObj('rocket','boost', false)
+                
                 reduxValInObj('rocket', 'boostAmt', 0)
-                reduxValInObj('rocket', 'totalTime')
-                reduxValInObj('rocket', 'timeRemaining')
             })
             this.physics.add.overlap(asteroid, this.bullet, () => {
                 this.asteroidGroup.remove(asteroid, true, true)
@@ -401,6 +395,8 @@ console.log(this)
 
                 reduxValInObj('rocket', 'health')
                 reduxValInObj('rocket', 'hit', true)
+                reduxValInObj('rocket', 'totalTime')
+                reduxValInObj('rocket', 'timeRemaining')
                 reduxValInObj('rocket', 'invincible', true)
                 // if(!hit){
                 setTimeout(() => {
@@ -410,8 +406,6 @@ console.log(this)
                 // }
                 // reduxValInObj('rocket','boost', false)
                 reduxValInObj('rocket', 'boostAmt', 0)
-                reduxValInObj('rocket', 'totalTime')
-                reduxValInObj('rocket', 'timeRemaining')
             })
 
             this.physics.add.overlap(meteor, this.bullet, () => {
