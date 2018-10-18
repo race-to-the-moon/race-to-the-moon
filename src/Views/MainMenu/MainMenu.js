@@ -52,7 +52,7 @@ class MainMenu extends Component {
 
                         <h1 id='main-title'>Race To The Moon</h1>
                         <div className='main-buttons-container'>
-                            <Link to='/comingsoon'><button>Customize Ship</button></Link>
+                            <Link to='/usercreation'><button>Change Username</button></Link>
                             <Link to='/single'><button>Single Player</button></Link>
                             <Link to='/comingsoon'><button>Versus</button></Link>
                             <Link to='/leaderboard'><button>Leader Board</button></Link>
