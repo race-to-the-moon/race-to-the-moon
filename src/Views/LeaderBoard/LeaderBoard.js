@@ -37,7 +37,7 @@ class LeaderBoard extends Component {
 
             <div>
                 <div className='leaderBoard-body'>
-                    <h1>LeaderBoard</h1>
+                    <h1 className="leader-title">LeaderBoard</h1>
                     <div className='leaderList-body'>
                         <LeaderList/>
                     </div>

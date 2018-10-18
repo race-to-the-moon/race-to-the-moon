@@ -19,8 +19,10 @@ export default function Login() {
         <ReactAudioPlayer volume={1.0} src={vo} autoPlay/>
             <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
             <div className="box-effects">
-                <h2 className="welcome-to">Welcome to</h2>
-                <h1 className="rttm">Race to the Moon!</h1>
+                <div className="login-title">
+                    <h2 className="welcome-to">Welcome to</h2>
+                    <h1 className="rttm">Race to the Moon!</h1>
+                </div>
                 <button className="login-button" onClick={login}>Please Login</button>
             </div>
             <div className="login-moon-div">
