@@ -15,7 +15,7 @@ class Winner extends Component {
     }
 
     timeScoreAlg = (finalTime) => {
-        const finalScore = (1 - (finalTime / 90000) * 25000)
+        const finalScore = (1 - (finalTime / 120000) * 25000)
     }
 
     componentDidMount() {
