@@ -47,7 +47,7 @@ class Winner extends Component {
                 </div>
                 <div className="winning-button-container">
                     <Link to="/leaderboard"><button>LeaderBoards</button></Link>
-                    <Link to="/single"><button>Restart</button></Link>
+                    <button onClick={() => window.location.reload()}>Restart</button>
                     <Link to="/mainmenu"><button>Main Menu</button></Link>
                 </div>
                 <h1 className="winning-score">{astScore}</h1>

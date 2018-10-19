@@ -2,15 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './Boost.css'
 
+
 import { updateValInObj } from '../../../ducks/reducer';
 
 function Boost(props) {
+
     const { boostAmt, updateValInObj } = props;
 
     let reduxValInObj = (topLvl, what, val = 'nothing') => {
         updateValInObj({ topLvl, what, val })
     }
-
 
     const boosting = (boostAmt) => {
         if (boostAmt === 100) {
@@ -30,7 +31,7 @@ function Boost(props) {
                     reduxValInObj('rocket', 'hit', false)
                     boostAmt -= .25
                     return updatingBoost()
-                }, 12.5)
+                }, 1)
             }
             updatingBoost()
         }
