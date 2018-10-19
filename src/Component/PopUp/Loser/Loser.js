@@ -12,7 +12,7 @@ export default function Loser() {
         <div className='loser-body'>
             <h1 className='insult'>{insult}</h1>
             <div className='loser-buttons'>
-                <button>Try Again</button>
+                <button onClick={() => window.location.reload()}>Try Again</button>
                 <Link to='leaderboard'><button>Leaderboard</button></Link>
                 <Link to='mainmenu'><button>Main Menu</button></Link>
             </div>

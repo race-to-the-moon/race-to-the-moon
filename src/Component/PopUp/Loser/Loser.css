@@ -41,6 +41,7 @@
     font-size: 20px;
     outline: none;
     text-shadow: 2px 2px 5px red;
+    border-radius: 5px;
 }
 
 .loser-buttons button:hover{
