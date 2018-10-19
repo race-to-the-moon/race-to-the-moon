@@ -15,6 +15,7 @@ import Thruster from '../../Component/Rocket/Thrusters/Thrusters';
 import ReactAudioPlayer from 'react-audio-player';
 import vo from './../../srcAssets/sound/vo/single-vo.mp3'
 import boostSfx from '../../srcAssets/sound/boost-sfx.mp3'
+import playMusic from '../../srcAssets/sound/soundtrack/play-music.mp3'
 
 
 
@@ -477,6 +478,7 @@ class Single extends Component {
                     <div className="game-div">
                     {this.props.rocket.boost ? boostPlay : null}
                     <ReactAudioPlayer volume={1.0} src={vo} autoPlay/>
+                    <ReactAudioPlayer volume={1.0} src={playMusic} autoPlay loop/>
                         <div id='render-game' />
                         <div className='hud-div'>
                             <Score />
