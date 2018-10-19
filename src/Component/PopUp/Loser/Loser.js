@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 export default function Loser() {
 
-    let insults = ["Yikes... That was horrible. Do better.", "What a sad display of a human being.", "You should have never been born you worthless sack of flesh."]
+    let insults = ["Yikes... That was horrible. Do better.", "What a sad display of a human being.", "Your skill level is garbage."]
 
     let insult = insults[Math.floor(Math.random() * insults.length)]
     

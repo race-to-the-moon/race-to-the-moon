@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './Boost.css'
-import ReactAudioPlayer from 'react-audio-player';
-import boostSfx from '../../../srcAssets/sound/boost-sfx.mp3'
+
 
 import { updateValInObj } from '../../../ducks/reducer';
 
@@ -32,7 +31,7 @@ function Boost(props) {
                     reduxValInObj('rocket', 'hit', false)
                     boostAmt -= .25
                     return updatingBoost()
-                }, 12.5)
+                }, 1)
             }
             updatingBoost()
         }

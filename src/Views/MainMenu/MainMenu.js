@@ -16,7 +16,7 @@ class MainMenu extends Component {
         super();
 
         this.state = {
-            toggleMusic: false
+            toggleMusic: true
         }
 
     }
