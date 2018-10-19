@@ -6,7 +6,6 @@ import axios from 'axios';
 import SettingIcon from '../../srcAssets/settings.icon.png';
 import SoundIcon from '../../srcAssets/Sound-Icon.png';
 import themeSong from './../../srcAssets/sound/soundtrack/race-to-the-moon-theme.mp3'
-import vo from './../../srcAssets/sound/vo/menu-vo.mp3'
 import ReactAudioPlayer from 'react-audio-player'
 
 // Action Creators //
@@ -17,10 +16,15 @@ class MainMenu extends Component {
         super();
 
         this.state = {
-
+            toggleMusic: false
         }
+
     }
+
+    toggleMusicFn = () => this.setState({toggleMusic: !this.state.toggleMusic})
+
     componentDidMount() {
+
         if (!this.props.user.user_id) {
             axios.get(`/auth/user`)
                 .then(resp => {
@@ -42,10 +46,11 @@ class MainMenu extends Component {
 
         const { user } = this.props;
 
+        const songPlay = <ReactAudioPlayer volume={0.30} src={themeSong} autoPlay loop/>
+
         return (
             <div>
-                <ReactAudioPlayer volume={0.30} src={themeSong} autoPlay loop/>
-                <ReactAudioPlayer volume={1.0} src={vo} autoPlay/>
+                {this.state.toggleMusic ? songPlay : null}
                 <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"></link>
                 {user.user_id ? (
                     <div className='mainMenu-body'>
@@ -60,7 +65,9 @@ class MainMenu extends Component {
                             <a href={`${process.env.REACT_APP_LOGOUT}`}><button>Logout</button></a>
                         </div>
                         <div className='option-buttons-container'>
-                            <Link to=""><img className="sound-icon" src={SoundIcon} alt='Sound-Icon.png' /></Link>
+                            <button className='soundToggle-btn' onClick={this.toggleMusicFn}>
+                                <img className="sound-icon" src={SoundIcon} alt='Sound-Icon.png' />
+                            </button>
                             <Link to=""><img className="setting-icon" src={SettingIcon} alt='setting.icon.png' /></Link>
                         </div>
                     </div>

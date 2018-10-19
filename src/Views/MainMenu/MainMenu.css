@@ -22,6 +22,11 @@
 	animation: float 6s ease-in-out infinite;
 }
 
+.soundToggle-btn{
+    border: none;
+    background: none;
+}
+
 .main-buttons-container{
     height: 40vh;
     width: 100%;
