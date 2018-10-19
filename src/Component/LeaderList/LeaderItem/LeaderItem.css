@@ -1,12 +1,49 @@
 .leaderItem{
-    width: 70%;
+    width: 90%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
+}
+
+#leaderItem-rank{
+    min-width: 25px;
+    margin-right: 10px;
+
 }
 
 img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    margin-right: 25px;
+}
+
+#leaderItem-user{
+    min-width: 145px;
+}
+
+#leaderItem-score{
+    min-width: 60px;
+    margin-right: 10;
+}
+
+
+@media screen and (min-width: 480px) {
+    #leaderItem-rank{
+        min-width: 4%;
+        margin-right: 40px;
+    }
+    
+    img{
+        margin-right: 8%;
+        
+    }
+    
+    #leaderItem-user{
+        min-width: 40%;
+    }
+    
+    #leaderItem-score{
+        min-width: 30%;
+    }
 }
