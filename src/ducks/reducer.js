@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
 
             } else if (what === 'timeRemaining' && timeRemaining) {
 
-                let boostTimeRemaining = timeRemaining - 5000
+                let boostTimeRemaining = timeRemaining > 5000 ? timeRemaining - 5000 : 0;
                 let countingDown = newState.rocket[what] + 10 * (val === 'countDown' ? (-50) : (!boost ? 300 : 0))
                 val = val === 'boost' ? boostTimeRemaining : countingDown
 
