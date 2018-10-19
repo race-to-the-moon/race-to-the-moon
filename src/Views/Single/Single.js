@@ -80,6 +80,7 @@ class Single extends Component {
     cursors
     velocity
     stateInvincible
+    explosionConfig
 
     testMethod(reduxMethodName, data) {
         this.props[reduxMethodName](data)
@@ -161,6 +162,8 @@ class Single extends Component {
         this.load.image('cannon', 'assets/cannon.png')
         this.load.image('bullet', 'assets/purple-bullet.jpg')
 
+        this.load.spritesheet('explosion', 'http://labs.phaser.io/assets/sprites/explosion.png', {frameWidth: 64, frameHeight: 64, endFrame: 23})
+
         this.load.audio('gunSfx', 'assets/gun-sfx.mp3')
         this.load.audio('asteroidHit', 'assets/asteroid-hit-sfx.mp3')
         this.load.audio('rocketHit', 'assets/rocket-hit-sfx.mp3')
@@ -171,7 +174,15 @@ class Single extends Component {
     }
 
     create() {
-console.log(this)
+// console.log(this)
+
+        this.explosionConfig = {
+            key: 'explosion',
+            frames: this.anims.generateFrameNumbers('explosion', {start: 0, end: 23, first: 23}),
+            frameRate: 40
+        }
+
+        this.anims.create(this.explosionConfig);
 
         this.stateInvincible = false;
 
@@ -203,6 +214,10 @@ console.log(this)
         this.bullet.setDisplaySize(40, 40);
         this.bullet.disableBody(true, true);
 
+        // this.explosions = this.add.group();
+        // this.explosions.createMultiple(10, 'explosion');
+
+
         this.input.on('pointermove', (pointer) => {
             let angle = BetweenPoints(this.cannon, pointer);
 
@@ -228,6 +243,9 @@ console.log(this)
                 asteroid.setName('asteroid');
                 console.log('Created', asteroid.name);
                 asteroid.enableBody = true;
+                asteroid.anchor.x = 0.5;
+                asteroid.anchor.y = 0.5;
+                asteroid.animations.add('explosion')
             },
             removeCallback: (asteroid) => {
                 console.log('Removed', asteroid.name);
@@ -268,7 +286,7 @@ console.log(this)
         // console.log('entries', this.asteroidGroup.children.entries)
         // console.log('deep physics', this.asteroidGroup)
         // console.log('bullet', this.bullet)
-        console.log('cursors', this.cursors)
+        // console.log('cursors', this.cursors)
 
     }
 
@@ -349,6 +367,13 @@ console.log(this)
             this.physics.add.overlap(asteroid, this.rocket, () => {
                 this.asteroidGroup.remove(asteroid, true, true)
 
+                // console.log('explosions', this.explosions)
+                // console.log('asteroid', asteroid)
+
+                let boom = this.add.sprite(asteroid.x, asteroid.y, 'explosion')
+                boom.anims.play('explosion')
+                // console.log(boom.anims)
+
                 // REDUX Section
                 if (!health) {
                     reduxValInObj('rocket', 'alive', false)
@@ -375,6 +400,9 @@ console.log(this)
                 this.asteroidGroup.remove(asteroid, true, true)
                 this.bullet.disableBody(true, true)
 
+                let boom = this.add.sprite(asteroid.x, asteroid.y, 'explosion')
+                boom.anims.play('explosion')
+
                 this.sound.play('asteroidHit')
 
                 //using the created this.game property to keep context of this to the class so we can update redux
@@ -386,6 +414,9 @@ console.log(this)
         this.meteorGroup.children.iterate((meteor) => {
             this.physics.add.overlap(meteor, this.rocket, () => {
                 this.meteorGroup.remove(meteor, true, true)
+
+                let boom = this.add.sprite(meteor.x, meteor.y, 'explosion')
+                boom.anims.play('explosion')
 
                 // REDUX Section
                 // let healthUpdate = health - 10
@@ -411,6 +442,9 @@ console.log(this)
             this.physics.add.overlap(meteor, this.bullet, () => {
                 this.meteorGroup.remove(meteor, true, true)
                 this.bullet.disableBody(true, true)
+
+                let boom = this.add.sprite(meteor.x, meteor.y, 'explosion')
+                boom.anims.play('explosion')
 
                 //using the created this.game property to keep context of this to the class so we can update redux
                 reduxValInObj('rocket', 'boostAmt', 'meteor')
