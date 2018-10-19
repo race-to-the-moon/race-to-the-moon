@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './Boost.css'
+import ReactAudioPlayer from 'react-audio-player';
+import boostSfx from '../../../srcAssets/sound/boost-sfx.mp3'
 
 import { updateValInObj } from '../../../ducks/reducer';
 
 function Boost(props) {
+
     const { boostAmt, updateValInObj } = props;
 
     let reduxValInObj = (topLvl, what, val = 'nothing') => {
         updateValInObj({ topLvl, what, val })
     }
-
 
     const boosting = (boostAmt) => {
         if (boostAmt === 100) {

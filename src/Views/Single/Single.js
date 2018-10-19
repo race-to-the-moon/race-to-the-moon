@@ -16,6 +16,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import vo from './../../srcAssets/sound/vo/single-vo.mp3'
 
 
+
 // Action Creators //
 import { updateTopLvlObj, updateValInObj } from '../../ducks/reducer';
 
@@ -471,6 +472,7 @@ class Single extends Component {
                 {user_id ? (
                     
                     <div className="game-div">
+                    {this.props.rocket.boost ? <ReactAudioPlayer volume={1.0} src={boostSfx} /> : null}
                     <ReactAudioPlayer volume={1.0} src={vo} autoPlay/>
                         <div id='render-game' />
                         <div className='hud-div'>
