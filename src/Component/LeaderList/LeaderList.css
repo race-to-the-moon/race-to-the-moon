@@ -43,7 +43,26 @@
 
 @media screen and (min-width: 480px) {
     .leaderItem-body{
-            font-size: 25px;
+        font-size: 25px;
 
+    }
+    .leaderList-titles{
+        width: 100%;
+    }
+    #rank{
+        position: relative;
+        left: 10px;
+    }
+    #leaderList-user{
+        position: relative;
+        right: 110px;
+    }
+    #leaderList-timeScore{
+        position: relative;
+        right: 150px;
+    }
+    #points{
+        position: relative;
+        right: 240px;
     }
 }
