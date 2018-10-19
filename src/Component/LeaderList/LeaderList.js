@@ -42,10 +42,10 @@ class LeaderList extends Component {
         return (
             <div className='leaderList-body'>
                 <div className='leaderList-titles'>
-                    <h3>Rank</h3>
+                    <h3 id='rank'>Rank</h3>
                     <h3 id="leaderList-user">User</h3>
                     <h3 id='leaderList-timeScore'>Time Score</h3>
-                    <h3>Points</h3>
+                    <h3 id='points'>Points</h3>
                 </div>
                 {filteredMappedListItems}
             </div>

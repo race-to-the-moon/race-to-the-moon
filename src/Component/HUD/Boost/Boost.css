@@ -39,13 +39,21 @@
 
 .boost-button{
     height: 100%;
-    background: rgb(255, 255, 255);
+    background: rgb(255, 0, 234);
     border-radius: 5px;
+    animation: glow;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
 }
 
-/* @media (min-width: 1496px){
-    .boost-container {
-        margin-left: 40px;
-        bottom: 240px;
+@keyframes glow{
+    0%{
+        background: rgb(255, 0, 255);
+        box-shadow: 0 0 20px 5px rgb(255, 255, 255), 0 10px 10px 0 rgb(255, 255, 255);
+    }100%{
+        background: rgb(42, 212, 255);
     }
-} */
+}
